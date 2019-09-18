@@ -1,12 +1,12 @@
 package main
 
 import (
-	"NoSQL_project/examples/test_1/utils"
 	"context"
 	"fmt"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"nosql2h19-clothes/examples/test_1/utils"
 	//"go.mongodb.org/mongo-driver/mongo/readpref"
 	"log"
 )
