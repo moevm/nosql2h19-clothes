@@ -8,6 +8,12 @@ import (
 )
 
 var DB *mongo.Database
+var USERS *mongo.Collection
+var NEWUSERS *mongo.Collection
+var USERSAUTH *mongo.Collection
+var DAYS *mongo.Collection
+var CATEGORIES *mongo.Collection
+var PLACES *mongo.Collection
 
 func InitDB(port string) bool {
 
@@ -34,8 +40,20 @@ func InitDB(port string) bool {
 }
 
 func initCollections(db *mongo.Database) {
-
+	collectionUsers := db.Collection("Users")
+	collectionNewUsers := db.Collection("NewUsers")
+	collectionUsersAuth := db.Collection("UsersAuth")
+	collectionDays := db.Collection("Days")
+	collectionCategories := db.Collection("Category")
+	collectionPlaces := db.Collection("Places")
+	USERS = collectionUsers
+	NEWUSERS = collectionNewUsers
+	USERSAUTH = collectionUsersAuth
+	DAYS = collectionDays
+	CATEGORIES = collectionCategories
+	PLACES = collectionPlaces
 }
+
 func Migrate(db *mongo.Database) {
 
 }
