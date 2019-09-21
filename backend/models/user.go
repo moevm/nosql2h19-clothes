@@ -55,10 +55,10 @@ func DeleteUser(user User) bool {
 	return true
 }
 
-/*func GetUsers() []User {
-
+func GetUsers() []User {
+	var users []User
 	return users
-}*/
+}
 
 func GetUserById(id int64) *User {
 

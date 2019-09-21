@@ -26,9 +26,9 @@ func GetCategories() []Category {
 	return cs
 }
 
-func GetCategoryById(id int64) Category {
+func GetCategoryById(id int64) *Category {
 	var c Category
-	return c
+	return &c
 }
 
 func GetCategoriesByName(name string) []Category {

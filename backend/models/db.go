@@ -33,6 +33,9 @@ func InitDB(port string) bool {
 	return true
 }
 
+func initCollections(db *mongo.Database) {
+
+}
 func Migrate(db *mongo.Database) {
 
 }

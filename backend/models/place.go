@@ -24,9 +24,9 @@ func GetPlaces() []Place {
 	return ps
 }
 
-func GetPlaceById(id int64) Place {
+func GetPlaceById(id int64) *Place {
 	var p Place
-	return p
+	return &p
 }
 
 func GetPlacesByName(name string) []Place {
