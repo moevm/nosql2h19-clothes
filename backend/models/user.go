@@ -17,6 +17,7 @@ type User struct {
 	Username string `json:"username"`
 	Name     string `json:"name"`
 	Email    string `json:"email"`
+	Days     []Day  `json:"days"`
 }
 
 func GetUserByUserName(username string) *User {
