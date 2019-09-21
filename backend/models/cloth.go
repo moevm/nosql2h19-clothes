@@ -5,5 +5,5 @@ type Cloth struct {
 	Name  string `json:"name"`
 	Color string `json:"color"`
 	Notes string `json:"notes"`
-	img   string `json:"img"`
+	Img   string `json:"img"`
 }
