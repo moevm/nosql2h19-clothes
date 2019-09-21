@@ -44,3 +44,33 @@ type Day struct {
 	CloseTime  int64      `json:"closeTime"`
 	Categories []Category `json:"categories"`
 }
+
+func CreateDay(c Day) int64 {
+	var uid int64
+
+	return uid
+}
+
+func UpdateDay(d Day) bool {
+	return true
+}
+
+func DeleteDay(d Day) bool {
+	return true
+}
+
+func GetDays() []Day {
+	var ds []Day
+
+	return ds
+}
+
+func GetDayById(id int64) *Day {
+	var d Day
+	return &d
+}
+
+func GetDaysByDayOfWeek(dayOfWeek string) []Day {
+	var d []Day
+	return d
+}
