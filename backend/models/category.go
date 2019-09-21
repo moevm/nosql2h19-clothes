@@ -31,7 +31,7 @@ func GetCategoryById(id int64) Category {
 	return c
 }
 
-func GetCategoryByName(name string) Category {
-	var c Category
+func GetCategoriesByName(name string) []Category {
+	var c []Category
 	return c
 }
