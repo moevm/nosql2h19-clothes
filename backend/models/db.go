@@ -7,7 +7,10 @@ import (
 	"log"
 )
 
+var DB *mongo.Database
+
 func InitDB(port string) bool {
+
 	// Set client options
 	clientOptions := options.Client().ApplyURI("mongodb://localhost:" + port)
 
@@ -24,6 +27,10 @@ func InitDB(port string) bool {
 		log.Fatal(err)
 		return false
 	}
+
+	db := client.Database("test")
+
+	DB = db
 
 	return true
 }
