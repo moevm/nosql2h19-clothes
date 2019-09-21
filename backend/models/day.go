@@ -42,7 +42,6 @@ type Day struct {
 	DayOfWeek Weekday `json:"dayOfWeek"`
 	StartTime int64   `json:"startTime"`
 	CloseTime int64   `json:"closeTime"`
-	Places    []Place `json:"places"`
 }
 
 func CreateDay(c Day) int64 {

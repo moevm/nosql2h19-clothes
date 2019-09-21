@@ -1,9 +1,8 @@
 package models
 
 type Place struct {
-	Id         int64      `json:"id"`
-	Name       string     `json:"name"`
-	Categories []Category `json:"categories"`
+	Id   int64  `json:"id"`
+	Name string `json:"name"`
 }
 
 func CreatePlace(p Place) int64 {
