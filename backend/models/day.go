@@ -38,11 +38,11 @@ func (day Weekday) Weekend() bool {
 }
 
 type Day struct {
-	Id         int64      `json:"id"`
-	DayOfWeek  Weekday    `json:"dayOfWeek"`
-	StartTime  int64      `json:"startTime"`
-	CloseTime  int64      `json:"closeTime"`
-	Categories []Category `json:"categories"`
+	Id        int64   `json:"id"`
+	DayOfWeek Weekday `json:"dayOfWeek"`
+	StartTime int64   `json:"startTime"`
+	CloseTime int64   `json:"closeTime"`
+	Places    []Place `json:"places"`
 }
 
 func CreateDay(c Day) int64 {
