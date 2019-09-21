@@ -2,15 +2,41 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"nosql2h19-clothes/examples/test_1/utils"
+	"os"
+
 	//"github.com/appleboy/gin-jwt"
 	"github.com/gin-gonic/gin"
 )
 
+var isDev = false
+
+var isBuild = "dev"
+
+type Dev struct {
+	DBPort string `json:"port"`
+}
+type Prod struct {
+	DBPort string `json:"port"`
+}
+type Configuration struct {
+	Dev  `json:"dev"`
+	Prod `json:"prod"`
+}
+
 func main() {
+
+	if isBuild == "dev" {
+		isDev = true
+		fmt.Println("Start Developing Mode")
+	} else if isBuild == "prod" {
+		isDev = false
+		fmt.Println("Start Prodaction Mode")
+	}
 
 	// Set client options
 	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
@@ -47,4 +73,22 @@ func CORSMiddleware() gin.HandlerFunc {
 			c.Next()
 		}
 	}
+}
+
+func ParceConfig(isDev bool) string {
+
+	file, _ := os.Open("conf.json")
+	defer file.Close()
+	decoder := json.NewDecoder(file)
+	configuration := Configuration{}
+	err := decoder.Decode(&configuration)
+	if err != nil {
+		fmt.Println("error:", err)
+	}
+	fmt.Println(configuration.Dev.DBPort)
+	fmt.Println(configuration.Prod.DBPort)
+	if isDev {
+		return configuration.Dev.DBPort
+	}
+	return configuration.Prod.DBPort
 }
