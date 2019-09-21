@@ -28,9 +28,11 @@ func InitDB(port string) bool {
 		return false
 	}
 
-	db := client.Database("test")
-
+	db := client.Database("NoSQL-clothes")
 	DB = db
-
 	return true
+}
+
+func Migrate(db *mongo.Database) {
+
 }
