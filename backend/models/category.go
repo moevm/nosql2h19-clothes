@@ -1,14 +1,24 @@
 package models
 
+import "C"
+import (
+	"context"
+	"nosql2h19-clothes/backend/utils"
+)
+
 type Category struct {
 	Id   int64  `json:"id"`
 	Name string `json:"name"`
 }
 
-func CreateCategory(c Category) int64 {
-	var uid int64
+type NewCategory struct {
+	Name string `json:"name"`
+}
 
-	return uid
+func CreateCategory(c Category) interface{} {
+	res, err := CATEGORIES.InsertOne(context.TODO(), c)
+	utils.CheckErr(err)
+	return res.InsertedID
 }
 
 func UpdateCategory(c Category) bool {

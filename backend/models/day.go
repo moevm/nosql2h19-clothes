@@ -44,6 +44,12 @@ type Day struct {
 	CloseTime int64   `json:"closeTime"`
 }
 
+type NewDay struct {
+	DayOfWeek Weekday `json:"dayOfWeek"`
+	StartTime int64   `json:"startTime"`
+	CloseTime int64   `json:"closeTime"`
+}
+
 func CreateDay(c Day) int64 {
 	var uid int64
 

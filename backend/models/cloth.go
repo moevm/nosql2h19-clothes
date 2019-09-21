@@ -14,7 +14,16 @@ type Cloth struct {
 	CategoryId int64  `json:"cid"`
 }
 
-func CreateCloth(c Cloth) interface{} {
+type NewCloth struct {
+	Name         string `json:"name"`
+	Color        string `json:"color"`
+	Notes        string `json:"notes"`
+	Img          string `json:"img"`
+	CategoryName string `json:"cname"`
+}
+
+func CreateCloth(c NewCloth) interface{} {
+	id := CreateCategory(c)
 	res, err := CLOTHES.InsertOne(context.TODO(), c)
 	utils.CheckErr(err)
 	return res.InsertedID
