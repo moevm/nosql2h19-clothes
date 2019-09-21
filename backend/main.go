@@ -1,16 +1,12 @@
 package main
 
 import (
-	"context"
 	"encoding/json"
 	"fmt"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
-	"nosql2h19-clothes/examples/test_1/utils"
-	"os"
-
-	//"github.com/appleboy/gin-jwt"
 	"github.com/gin-gonic/gin"
+	"log"
+	"nosql2h19-clothes/backend/models"
+	"os"
 )
 
 var isDev = false
@@ -38,18 +34,12 @@ func main() {
 		fmt.Println("Start Prodaction Mode")
 	}
 
-	// Set client options
-	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
-
-	// Connect to MongoDB
-	client, err := mongo.Connect(context.TODO(), clientOptions)
-	utils.CheckErr(err)
-
-	// Check the connection
-	err = client.Ping(context.TODO(), nil)
-	utils.CheckErr(err)
-
-	fmt.Println("Connected to MongoDB!")
+	if models.InitDB(ParceConfig(isDev)) {
+		fmt.Println("Database successfull initialisation")
+		/* ... */
+	} else {
+		log.Panic("Database not initialisation")
+	}
 
 	router := gin.Default()
 	router.Use(CORSMiddleware())
@@ -85,8 +75,8 @@ func ParceConfig(isDev bool) string {
 	if err != nil {
 		fmt.Println("error:", err)
 	}
-	fmt.Println(configuration.Dev.DBPort)
-	fmt.Println(configuration.Prod.DBPort)
+	fmt.Println("Develop Port: " + configuration.Dev.DBPort)
+	fmt.Println("Production Port: " + configuration.Prod.DBPort)
 	if isDev {
 		return configuration.Dev.DBPort
 	}
