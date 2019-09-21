@@ -56,8 +56,8 @@ type NewDay struct {
 	CloseTime int64   `json:"closeTime"`
 }
 
-func CreateDay(c Day) interface{} {
-	res, err := DAYS.InsertOne(context.TODO(), c)
+func CreateDay(d NewDay) interface{} {
+	res, err := DAYS.InsertOne(context.TODO(), d)
 	utils.CheckErr(err)
 	return res.InsertedID
 }

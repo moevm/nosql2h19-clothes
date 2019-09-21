@@ -15,7 +15,7 @@ type NewPlace struct {
 }
 
 func CreatePlace(p NewPlace) interface{} {
-	res, err := PLACES.InsertOne(context.TODO(), c)
+	res, err := PLACES.InsertOne(context.TODO(), p)
 	utils.CheckErr(err)
 	return res.InsertedID
 }
