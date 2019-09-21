@@ -1,5 +1,11 @@
 package models
 
+import "C"
+import (
+	"context"
+	"nosql2h19-clothes/backend/utils"
+)
+
 type Weekday int
 
 const (
@@ -50,10 +56,10 @@ type NewDay struct {
 	CloseTime int64   `json:"closeTime"`
 }
 
-func CreateDay(c Day) int64 {
-	var uid int64
-
-	return uid
+func CreateDay(c Day) interface{} {
+	res, err := DAYS.InsertOne(context.TODO(), c)
+	utils.CheckErr(err)
+	return res.InsertedID
 }
 
 func UpdateDay(d Day) bool {

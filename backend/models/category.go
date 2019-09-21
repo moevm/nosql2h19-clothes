@@ -15,7 +15,7 @@ type NewCategory struct {
 	Name string `json:"name"`
 }
 
-func CreateCategory(c Category) interface{} {
+func CreateCategory(c NewCategory) interface{} {
 	res, err := CATEGORIES.InsertOne(context.TODO(), c)
 	utils.CheckErr(err)
 	return res.InsertedID

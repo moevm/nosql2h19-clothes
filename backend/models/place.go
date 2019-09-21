@@ -1,14 +1,23 @@
 package models
 
+import (
+	"context"
+	"nosql2h19-clothes/backend/utils"
+)
+
 type Place struct {
 	Id   int64  `json:"id"`
 	Name string `json:"name"`
 }
 
-func CreatePlace(p Place) int64 {
-	var uid int64
+type NewPlace struct {
+	Name string `json:"name"`
+}
 
-	return uid
+func CreatePlace(p NewPlace) interface{} {
+	res, err := PLACES.InsertOne(context.TODO(), c)
+	utils.CheckErr(err)
+	return res.InsertedID
 }
 
 func UpdatePlace(p Place) bool {

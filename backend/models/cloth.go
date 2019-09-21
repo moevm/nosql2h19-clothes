@@ -23,7 +23,6 @@ type NewCloth struct {
 }
 
 func CreateCloth(c NewCloth) interface{} {
-	id := CreateCategory(c)
 	res, err := CLOTHES.InsertOne(context.TODO(), c)
 	utils.CheckErr(err)
 	return res.InsertedID
