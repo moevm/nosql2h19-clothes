@@ -107,10 +107,10 @@ func main() {
 	fmt.Printf("Found multiple documents (array of pointers): %+v\n", results)
 
 	// Delete all the documents in the collection
-	deleteResult, err := collection.DeleteMany(context.TODO(), bson.D{{}})
-	utils.CheckErr(err)
+	//deleteResult, err := collection.DeleteMany(context.TODO(), bson.D{{}})
+	//utils.CheckErr(err)
 
-	fmt.Printf("Deleted %v documents in the trainers collection\n", deleteResult.DeletedCount)
+	//	fmt.Printf("Deleted %v documents in the trainers collection\n", deleteResult.DeletedCount)
 
 	// Close the connection once no longer needed
 	err = client.Disconnect(context.TODO())
