@@ -6,7 +6,7 @@ import (
 )
 
 type Place struct {
-	Id   int64  `json:"id"`
+	Id   string `json:"id"`
 	Name string `json:"name"`
 }
 

@@ -1,10 +1,5 @@
 package models
 
-import (
-	"github.com/tidwall/pretty"
-	"os/user"
-)
-
 type UserAuth struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
@@ -20,7 +15,7 @@ type NewUser struct {
 }
 
 type User struct {
-	Id         int64  `json:"id"`
+	Id         string `json:"id"`
 	Username   string `json:"username"`
 	Name       string `json:"name"`
 	Email      string `json:"email"`
