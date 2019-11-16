@@ -1,5 +1,10 @@
 package models
 
+import (
+	"github.com/tidwall/pretty"
+	"os/user"
+)
+
 type UserAuth struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
@@ -10,14 +15,22 @@ type NewUser struct {
 	Password string `json:"password" validate:"required,gte=6"`
 	Name     string `json:"name" validate:"required,gte=3"`
 	Email    string `json:"email" validate:"required,email"`
+	Age      int64  `json:"age"`
+	Gender   bool   `json:"gender"`
 }
 
 type User struct {
-	Id       int64  `json:"id"`
-	Username string `json:"username"`
-	Name     string `json:"name"`
-	Email    string `json:"email"`
-	//Days     []Day  `json:"days"`
+	Id         int64  `json:"id"`
+	Username   string `json:"username"`
+	Name       string `json:"name"`
+	Email      string `json:"email"`
+	Age        int64  `json:"age"`
+	Gender     bool   `json:"gender"`
+	Categories []Category
+	Places     []Place
+	Groups     []Group
+	Styles     []Style
+	Clothes    []Cloth
 }
 
 func GetUserByUserName(username string) *User {
