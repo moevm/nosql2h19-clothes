@@ -6,44 +6,27 @@ import (
 )
 
 type Cloth struct {
-	Id         string `json:"id"`
-	Name       string `json:"name"`
-	Color      string `json:"color"`
-	Notes      string `json:"notes"`
-	Img        string `json:"img"`
-	CategoryId int64  `json:"cid"`
+	Id            string `json:"id"`
+	Name          string `json:"name"`
+	Color         string `json:"color"`
+	Notes         string `json:"notes"`
+	Img           string `json:"img"`
+	Category_name string `json:"category_name"`
 }
 
 type NewCloth struct {
-	Name         string `json:"name"`
-	Color        string `json:"color"`
-	Notes        string `json:"notes"`
-	Img          string `json:"img"`
-	CategoryName string `json:"cname"`
-}
-
-type BufCloth struct {
-	Name       string      `json:"name"`
-	Color      string      `json:"color"`
-	Notes      string      `json:"notes"`
-	Img        string      `json:"img"`
-	CategoryId interface{} `json:"cid"`
+	Name          string `json:"name"`
+	Color         string `json:"color"`
+	Notes         string `json:"notes"`
+	Img           string `json:"img"`
+	Category_name string `json:"category_name"`
 }
 
 func CreateCloth(c NewCloth) interface{} {
-	if CATEGORIES.FindOne(context.TODO(), c.CategoryName) != nil {
+	if CATEGORIES.FindOne(context.TODO(), c.Category_name) != nil {
 		res, err := CATEGORIES.InsertOne(context.TODO(), c)
 		utils.CheckErr(err)
-		cloth := BufCloth{
-			Name:       c.Name,
-			Color:      c.Color,
-			Notes:      c.Notes,
-			Img:        c.Img,
-			CategoryId: res,
-		}
-		res_2, err_2 := CLOTHES.InsertOne(context.TODO(), cloth)
-		utils.CheckErr(err_2)
-		return res_2.InsertedID
+		return res.InsertedID
 	}
 	return nil
 }

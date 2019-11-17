@@ -1,0 +1,141 @@
+{
+  "Username":"bivok",
+  "Password":"bivok1410",
+  "Role": 1,
+  "Name": "Ilya Bykov",
+  "Email": "bikovbiv@gmail.com",
+  "Age": 20,
+  "Gender": 1,
+  "Categories": [
+    {
+      "Name": "shoes"
+    },
+    {
+      "Name": "pants"
+    },
+    {
+      "Name": "shirts"
+    },
+    {
+      "Name": "headdress"
+    }
+  ],
+  "Places": [
+    {
+      "Name": "institute"
+    },
+    {
+      "Name":"job"
+    }
+  ],
+  "Groups": [
+    {
+      "Clothes": [
+        {
+          "Name": "sneakers",
+          "Color": "red",
+          "Notes": "smth",
+          "Img":"smth",
+          "Category_name": "shoes"
+        }
+      ],
+      "Date": "01/01/2019",
+      "Place_name": "job"
+    }
+  ],
+  "Styles": [
+    {
+      "Name": "casual"
+    },
+    {
+      "Name": "festive"
+    }
+  ],
+  "Clothes": [
+    {
+      "Name": "sneakers",
+      "Color": "red",
+      "Notes": "smth",
+      "Img":"smth",
+      "Category_name": "shoes"
+    },
+    {
+      "Name": "jeans",
+      "Color": "blue",
+      "Notes": "smth",
+      "Img":"smth",
+      "Category_name": "pants"
+    }
+  ]
+}
+{
+  "Username":"spas",
+  "Password":"spas1410",
+  "Role": 0,
+  "Name": "Artyom Spas",
+  "Email": "spas@gmail.com",
+  "Age": 20,
+  "Gender": 1,
+  "Categories": [
+    {
+      "Name": "shoes"
+    },
+    {
+      "Name": "pants"
+    },
+    {
+      "Name": "shirts"
+    },
+    {
+      "Name": "headdress"
+    }
+  ],
+  "Places": [
+    {
+      "Name": "institute"
+    },
+    {
+      "Name":"job"
+    }
+  ],
+  "Groups": [
+    {
+      "Clothes": [
+        {
+          "Name": "sneakers",
+          "Color": "red",
+          "Notes": "smth",
+          "Img":"smth",
+          "Category_name": "shoes"
+        }
+      ],
+      "Date": "01/01/2019",
+      "Place_name": "job"
+    }
+  ],
+  "Styles": [
+    {
+      "Name": "casual"
+    },
+    {
+      "Name": "festive"
+    }
+  ],
+  "Clothes": [
+    {
+      "Name": "sneakers",
+      "Color": "red",
+      "Notes": "smth",
+      "Img":"smth",
+      "Category_name": "shoes"
+    },
+    {
+      "Name": "jeans",
+      "Color": "blue",
+      "Notes": "smth",
+      "Img":"smth",
+      "Category_name": "pants"
+    }
+  ]
+}
+
