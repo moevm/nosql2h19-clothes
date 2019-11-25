@@ -23,7 +23,7 @@ var CTX context.Context
 //var CATEGORIES *mongo.Collection
 //var PLACES *mongo.Collection
 //var CLOTHES *mongo.Collection
-var Users []User
+var Users []NewUser
 
 func InitDB(port string) bool {
 
@@ -43,6 +43,7 @@ func InitDB(port string) bool {
 	DB = db
 	print(DB.Name(), "\n")
 	CTX = ctx
+	initCollections(DB)
 	return true
 }
 
@@ -69,8 +70,8 @@ func Migrate(db *mongo.Database) {
 }
 
 func LoadNewUsers(path string) {
-	initCollections(DB)
 	ctx, _ := context.WithTimeout(context.Background(), 3*time.Second)
+	CTX = ctx
 	docPath, err := filepath.Abs(path)
 	utils.CheckErr(err)
 	byteValues, err := ioutil.ReadFile(docPath)

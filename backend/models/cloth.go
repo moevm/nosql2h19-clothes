@@ -47,13 +47,7 @@ func GetClothes() []Cloth {
 	return cs
 }
 
-func GetClothById(id int64) *Cloth {
-	var c Cloth
-
-	return &c
-}
-
-func GetClothesByName(name string) []Cloth {
+func GetClothByName(name string) []Cloth {
 	var cs []Cloth
 	return cs
 }

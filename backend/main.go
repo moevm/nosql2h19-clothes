@@ -43,7 +43,9 @@ func main() {
 	} else {
 		log.Panic("Database not initialisation")
 	}
-	models.LoadNewUsers(pathToUsersDb)
+	//models.LoadNewUsers(pathToUsersDb)
+	id := models.GetUserIdByUserName("Ilya Bykov")
+	fmt.Println("\n", id, "\n")
 	router := gin.Default()
 	router.Use(CORSMiddleware())
 
