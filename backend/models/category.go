@@ -1,13 +1,7 @@
 package models
 
-import "C"
-
 type Category struct {
 	//Id   string `json:"id"`
-	Name string `json:"name"`
-}
-
-type NewCategory struct {
 	Name string `json:"name"`
 }
 
