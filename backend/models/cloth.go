@@ -34,12 +34,14 @@ func DeleteCloth(c Cloth) bool {
 	return true
 }
 
-func GetClothes() []Cloth {
-	var cs []Cloth
+func GetClothes(un string) []Cloth {
+	u := GetUserByUserName(un)
+	cs := u.Clothes
 	return cs
 }
 
-func GetClothByName(name string) []Cloth {
-	var cs []Cloth
-	return cs
+func PrintClothes(c []Cloth) {
+	for i := range c {
+		print(c[i].Name, "\n")
+	}
 }

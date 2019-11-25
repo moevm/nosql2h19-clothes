@@ -19,17 +19,14 @@ func DeletePlace(p Place) bool {
 	return true
 }
 
-func GetPlaces() []Place {
-	var ps []Place
-	return ps
+func GetPlaces(un string) []Place {
+	u := GetUserByUserName(un)
+	cs := u.Places
+	return cs
 }
 
-func GetPlaceById(id int64) *Place {
-	var p Place
-	return &p
-}
-
-func GetPlacesByName(name string) []Place {
-	var ps []Place
-	return ps
+func PrintPlaces(c []Place) {
+	for i := range c {
+		print(c[i].Name, "\n")
+	}
 }

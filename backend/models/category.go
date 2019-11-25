@@ -19,10 +19,16 @@ func DeleteCategory(c Category) bool {
 	return true
 }
 
-func GetCategories() []Category {
-	var cs []Category
-
+func GetCategories(un string) []Category {
+	u := GetUserByUserName(un)
+	cs := u.Categories
 	return cs
+}
+
+func PrintCategories(c []Category) {
+	for i := range c {
+		print(c[i].Name, "\n")
+	}
 }
 
 func GetCategoryById(id int64) *Category {

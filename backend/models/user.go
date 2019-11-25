@@ -77,7 +77,6 @@ func UpdateUser(userAuth NewUser) bool {
 	return true
 }
 
-/**/
 func DeleteUser(user User) bool {
 
 	return true

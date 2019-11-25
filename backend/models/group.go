@@ -6,3 +6,15 @@ type Group struct {
 	Date       string `json:"date"`
 	Place_name string `json:"place_name"`
 }
+
+func GetGrops(un string) []Group {
+	u := GetUserByUserName(un)
+	cs := u.Groups
+	return cs
+}
+
+func PrintGroups(c []Group) {
+	for i := range c {
+		print(c[i].Date, " ", c[i].Place_name, "\n")
+	}
+}

@@ -46,6 +46,11 @@ func main() {
 	//models.LoadNewUsers(pathToUsersDb)
 	id := models.GetUserIdByUserName("Ilya Bykov")
 	fmt.Println("\n", id, "\n")
+	models.PrintCategories(models.GetCategories("Ilya Bykov"))
+	models.PrintClothes(models.GetClothes("Ilya Bykov"))
+	models.PrintPlaces(models.GetPlaces("Ilya Bykov"))
+	models.PrintGroups(models.GetGrops("Ilya Bykov"))
+
 	router := gin.Default()
 	router.Use(CORSMiddleware())
 
