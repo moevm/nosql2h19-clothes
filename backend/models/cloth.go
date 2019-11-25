@@ -9,14 +9,6 @@ type Cloth struct {
 	Category_name string `json:"category_name"`
 }
 
-type NewCloth struct {
-	Name          string `json:"name"`
-	Color         string `json:"color"`
-	Notes         string `json:"notes"`
-	Img           string `json:"img"`
-	Category_name string `json:"category_name"`
-}
-
 /*func CreateCloth(c NewCloth) interface{} {
 	if CATEGORIES.FindOne(context.TODO(), c.Category_name) != nil {
 		res, err := CATEGORIES.InsertOne(context.TODO(), c)

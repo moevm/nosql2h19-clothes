@@ -6,9 +6,3 @@ type Group struct {
 	Date       string `json:"date"`
 	Place_name string `json:"place_name"`
 }
-
-type NewGroup struct {
-	Clothes    []Cloth
-	Date       string `json:"date"`
-	Place_name string `json:"place_name"`
-}
