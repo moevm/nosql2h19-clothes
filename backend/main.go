@@ -13,6 +13,9 @@ var isDev = false
 
 var isBuild = "dev"
 
+var pathToUsersDb = "./api/tmp/db_newUser.json"
+var pathToTest = "./api/tmp/test.json"
+
 type Dev struct {
 	DBPort string `json:"port"`
 }
@@ -40,7 +43,7 @@ func main() {
 	} else {
 		log.Panic("Database not initialisation")
 	}
-
+	models.LoadNewUsers(pathToUsersDb)
 	router := gin.Default()
 	router.Use(CORSMiddleware())
 

@@ -11,16 +11,18 @@ type NewUser struct {
 	Name     string `json:"name" validate:"required,gte=3"`
 	Email    string `json:"email" validate:"required,email"`
 	Age      int64  `json:"age"`
-	Gender   bool   `json:"gender"`
+	Gender   int64  `json:"gender"`
 }
 
 type User struct {
-	Id         string `json:"id"`
-	Username   string `json:"username"`
-	Name       string `json:"name"`
-	Email      string `json:"email"`
-	Age        int64  `json:"age"`
-	Gender     bool   `json:"gender"`
+	//Id         string `json:"_id"`
+	Username   string `json:"Username"`
+	Password   string `json:"Password"`
+	Role       int    `json:"Role"`
+	Name       string `json:"Name"`
+	Email      string `json:"Email"`
+	Age        int    `json:"Age"`
+	Gender     int    `json:"Gender"`
 	Categories []Category
 	Places     []Place
 	Groups     []Group

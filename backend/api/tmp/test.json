@@ -1,0 +1,20 @@
+[
+  {
+    "Username":"bivok",
+    "Password":"bivok1410",
+    "Role": 1,
+    "Name": "Ilya Bykov",
+    "Email": "bikovbiv@gmail.com",
+    "Age": 20,
+    "Gender": 1
+  },
+  {
+    "Username":"spas",
+    "Password":"spas1410",
+    "Role": 0,
+    "Name": "Artyom Spas",
+    "Email": "spas@gmail.com",
+    "Age": 20,
+    "Gender": 1
+  }
+]
