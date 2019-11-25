@@ -1,6 +1,7 @@
 package models
 
 type Category struct {
+	//Id   string `json:"id"`
 	Name string `json:"name"`
 }
 
@@ -18,6 +19,18 @@ func DeleteCategory(c Category) bool {
 	return true
 }
 
-func GetCategories(u string) []Category {
+func GetCategories() []Category {
+	var cs []Category
 
+	return cs
+}
+
+func GetCategoryById(id int64) *Category {
+	var c Category
+	return &c
+}
+
+func GetCategoriesByName(name string) []Category {
+	var c []Category
+	return c
 }
