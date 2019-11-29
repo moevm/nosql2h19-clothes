@@ -1,0 +1,23 @@
+.Home {
+    max-width: 480px;
+    width: 100%;
+    margin: 0 auto;
+    transform: translateY(50%);
+}
+
+tr {
+    height: 38px;
+}
+
+.wrap-btn {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrap-btn button {
+    font-weight: 500;
+}
+
+button a {
+    text-decoration: none;
+}
