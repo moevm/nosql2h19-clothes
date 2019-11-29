@@ -1,0 +1,24 @@
+.addSmth_button {
+    width: 120px;
+    margin-right: 20px;
+    align-self: flex-end;
+}
+
+.form__container {
+    margin: 0 10px;
+    display: flex;
+    align-items: baseline;
+}
+
+input {
+    flex-grow: 4;
+}
+
+label {
+    flex-grow: 1;
+    color: #96999c;
+}
+
+form {
+    width: 100%;
+}

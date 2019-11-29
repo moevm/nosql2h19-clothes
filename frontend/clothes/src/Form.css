@@ -1,0 +1,34 @@
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+    transform: translateY(50%);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    background: #384046;
+}
+
+input, button {
+    margin: 10px;
+    line-height: 26px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+body {
+    background: #f0f8ff;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+}
+
+h3 {
+    color: #96999c;
+    text-align: center;
+    font-weight: 500;
+    font-size: 26px;
+}
+
+button {
+    font-weight: 900;
+}
