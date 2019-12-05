@@ -1,0 +1,23 @@
+.ShowCat {
+    max-width: 800px;
+    transform: translateY(200px);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.ShowCat__wrap {
+    max-width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.ShowCat__wrap__item {
+    width: 350px;
+}
+
+.ShowCat__btn {
+    width: 210px;
+    margin: 10px 0;
+}

@@ -1,0 +1,26 @@
+.EditPlace > div {
+    display: block;
+}
+
+.EditPlace {
+    transform: translateY(150px);
+}
+
+.EditPlace__wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.EditPlace__wrap input{
+    flex-grow: 0;
+}
+
+.wrap__date {
+    margin: 0;
+}
+
+.wrap__time {
+    margin: 0;
+}

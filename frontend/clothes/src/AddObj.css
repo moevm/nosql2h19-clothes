@@ -1,0 +1,7 @@
+form textarea{
+    margin: 10px;
+    line-height: 26px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}

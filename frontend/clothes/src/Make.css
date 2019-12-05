@@ -1,0 +1,23 @@
+.Make h3 {
+    margin: 10px auto;
+}
+
+form div {
+    display: flex;
+    color: #c5c6c7;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: justify;
+    justify-content: space-between;
+    margin: 5px 10px; 
+}
+
+div select {
+    width: 35%;
+    height: 26px;
+    border-radius: 5px;
+}
+
+.Make button {
+    width: 33%;
+}
