@@ -1,5 +1,12 @@
 package models
 
+import (
+	"context"
+	"fmt"
+	"go.mongodb.org/mongo-driver/bson"
+	"nosql2h19-clothes/backend/utils"
+)
+
 type Group struct {
 	//Id         string `json:"id"`
 	Clothes    []Cloth
@@ -7,14 +14,30 @@ type Group struct {
 	Place_name string `json:"place_name"`
 }
 
-func GetGrops(un string) []Group {
+func GetGroups(un string) []Group {
 	u := GetUserByUserName(un)
 	cs := u.Groups
 	return cs
+}
+
+func AddGroup(un string, c Group) bool {
+	u := GetUserByUserName(un)
+	updateResult, err := USERS.UpdateOne(context.TODO(), bson.D{{"_id", u.Id}}, bson.D{{"$addToSet", bson.D{{"groups", c}}}})
+	utils.CheckErr(err)
+	fmt.Println("update result: ", updateResult)
+	return true
 }
 
 func PrintGroups(c []Group) {
 	for i := range c {
 		print(c[i].Date, " ", c[i].Place_name, "\n")
 	}
+}
+
+func DeleteGroup(un string, c Group) bool {
+	u := GetUserByUserName(un)
+	updateResult, err := USERS.UpdateOne(context.TODO(), bson.D{{"_id", u.Id}}, bson.D{{"$pull", bson.D{{"groups", c}}}})
+	utils.CheckErr(err)
+	fmt.Println("update result: ", updateResult)
+	return true
 }

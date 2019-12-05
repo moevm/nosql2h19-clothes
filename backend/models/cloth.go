@@ -1,5 +1,12 @@
 package models
 
+import (
+	"context"
+	"fmt"
+	"go.mongodb.org/mongo-driver/bson"
+	"nosql2h19-clothes/examples/test_1/utils"
+)
+
 type Cloth struct {
 	//Id            string `json:"id"`
 	Name          string `json:"name"`
@@ -30,7 +37,11 @@ func UpdateCloth(c Cloth) bool {
 	return true
 }
 
-func DeleteCloth(c Cloth) bool {
+func DeleteCloth(un string, c Cloth) bool {
+	u := GetUserByUserName(un)
+	updateResult, err := USERS.UpdateOne(context.TODO(), bson.D{{"_id", u.Id}}, bson.D{{"$addToSet", bson.D{{"clothes", c}}}})
+	utils.CheckErr(err)
+	fmt.Println("update result: ", updateResult)
 	return true
 }
 
@@ -38,6 +49,14 @@ func GetClothes(un string) []Cloth {
 	u := GetUserByUserName(un)
 	cs := u.Clothes
 	return cs
+}
+
+func AddCloth(un string, c Cloth) bool {
+	u := GetUserByUserName(un)
+	updateResult, err := USERS.UpdateOne(context.TODO(), bson.D{{"_id", u.Id}}, bson.D{{"$addToSet", bson.D{{"clothes", c}}}})
+	utils.CheckErr(err)
+	fmt.Println("update result: ", updateResult)
+	return true
 }
 
 func PrintClothes(c []Cloth) {

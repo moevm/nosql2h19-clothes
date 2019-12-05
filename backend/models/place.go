@@ -1,5 +1,12 @@
 package models
 
+import (
+	"context"
+	"fmt"
+	"go.mongodb.org/mongo-driver/bson"
+	"nosql2h19-clothes/backend/utils"
+)
+
 type Place struct {
 	//Id   string `json:"id"`
 	Name string `json:"name"`
@@ -15,7 +22,11 @@ func UpdatePlace(p Place) bool {
 	return true
 }
 
-func DeletePlace(p Place) bool {
+func DeletePlace(un string, c Place) bool {
+	u := GetUserByUserName(un)
+	updateResult, err := USERS.UpdateOne(context.TODO(), bson.D{{"_id", u.Id}}, bson.D{{"$pull", bson.D{{"places", c}}}})
+	utils.CheckErr(err)
+	fmt.Println("update result: ", updateResult)
 	return true
 }
 
@@ -23,6 +34,14 @@ func GetPlaces(un string) []Place {
 	u := GetUserByUserName(un)
 	cs := u.Places
 	return cs
+}
+
+func AddPlace(un string, c Place) bool {
+	u := GetUserByUserName(un)
+	updateResult, err := USERS.UpdateOne(context.TODO(), bson.D{{"_id", u.Id}}, bson.D{{"$addToSet", bson.D{{"places", c}}}})
+	utils.CheckErr(err)
+	fmt.Println("update result: ", updateResult)
+	return true
 }
 
 func PrintPlaces(c []Place) {

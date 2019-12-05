@@ -44,13 +44,16 @@ func main() {
 		log.Panic("Database not initialisation")
 	}
 	//models.LoadNewUsers(pathToUsersDb)
+	fmt.Println("\nGET TEST for Ilya Bykov:\n")
 	id := models.GetUserIdByUserName("Ilya Bykov")
-	fmt.Println("\n", id, "\n")
+	fmt.Println(id)
 	models.PrintCategories(models.GetCategories("Ilya Bykov"))
 	models.PrintClothes(models.GetClothes("Ilya Bykov"))
 	models.PrintPlaces(models.GetPlaces("Ilya Bykov"))
-	models.PrintGroups(models.GetGrops("Ilya Bykov"))
-
+	models.PrintGroups(models.GetGroups("Ilya Bykov"))
+	fmt.Println("\n-------------------------------------\n")
+	p := models.Place{Name: "job"}
+	models.DeletePlace("Ilya Bykov", p)
 	router := gin.Default()
 	router.Use(CORSMiddleware())
 
