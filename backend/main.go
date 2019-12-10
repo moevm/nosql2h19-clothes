@@ -54,9 +54,9 @@ func main() {
 	fmt.Println("\n-------------------------------------\n")
 	p := models.Place{Name: "job"}
 	models.DeletePlace("Ilya Bykov", p)
+
 	router := gin.Default()
 	router.Use(CORSMiddleware())
-
 	router.Run(":5000")
 }
 
