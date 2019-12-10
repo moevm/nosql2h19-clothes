@@ -8,7 +8,6 @@ import (
 	"gopkg.in/go-playground/validator.v9"
 	"net/http"
 	"nosql2h19-clothes/backend/models"
-	"nosql2h19-clothes/backend/utils"
 	"strconv"
 )
 

@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"nosql2h19-clothes/backend/models"
+	"nosql2h19-clothes/backend/routes"
 	"os"
 	"time"
 )
@@ -28,6 +29,8 @@ type Configuration struct {
 	Dev  `json:"dev"`
 	Prod `json:"prod"`
 }
+
+var identityKey = "id"
 
 func main() {
 
@@ -81,37 +84,37 @@ func main() {
 		PayloadFunc:     payloadFunc,
 		IdentityHandler: identityHandler,
 	})
-	/*
-		if err != nil {
-			log.Fatal("JWT Error:" + err.Error())
-		}
-	*/
+
+	if err != nil {
+		log.Fatal("JWT Error:" + err.Error())
+	}
+
 	//API
 	api := router.Group("/api")
 	api.POST("/login", userAuthMiddleware.LoginHandler)
 
 	api.Use(userAuthMiddleware.MiddlewareFunc())
 	{
-		api.GET("users/info", routes.GetUserInfo)
-		api.GET("users/id/:id", routes.GetUserById)
-		api.GET("statistics/manager", routes.GetTasksStatisticsForManagers)
-		api.GET("statistics/managersNames", routes.GetManagers)
-		managers := api.Group("/managers")
-		{
-			managers.POST("", routes.CreateUser)
-			managers.GET("/id/:id", routes.GetUserById)
-			managers.PUT("/:id", routes.UpdateUser)
-			managers.DELETE("/:id", routes.DeleteUser)
-			managers.GET("/managersNames", routes.GetUsers)
-		}
-		status := api.Group("/taskstatus")
-		{
-			status.POST("", routes.CreateTaskStatus)
-			status.GET("/id/:id", routes.ReadTaskStatusById)
-			status.PUT("/:id", routes.UpdateTaskStatus)
-			status.DELETE("/:id", routes.DeleteTaskStatus)
-			status.GET("", routes.GetTaskStatuses)
-		}
+		/*	api.GET("users/info", routes.GetUserInfo)
+			api.GET("users/id/:id", routes.GetUserById)
+			api.GET("statistics/manager", routes.GetTasksStatisticsForManagers)
+			api.GET("statistics/managersNames", routes.GetManagers)
+			managers := api.Group("/managers")
+			{
+				managers.POST("", routes.CreateUser)
+				managers.GET("/id/:id", routes.GetUserById)
+				managers.PUT("/:id", routes.UpdateUser)
+				managers.DELETE("/:id", routes.DeleteUser)
+				managers.GET("/managersNames", routes.GetUsers)
+			}
+			status := api.Group("/taskstatus")
+			{
+				status.POST("", routes.CreateTaskStatus)
+				status.GET("/id/:id", routes.ReadTaskStatusById)
+				status.PUT("/:id", routes.UpdateTaskStatus)
+				status.DELETE("/:id", routes.DeleteTaskStatus)
+				status.GET("", routes.GetTaskStatuses)
+			}*/
 
 	}
 	router.Run(":5000")
@@ -151,4 +154,18 @@ func ParceConfig(isDev bool) string {
 		return configuration.Dev.DBPort
 	}
 	return configuration.Prod.DBPort
+}
+
+func payloadFunc(data interface{}) jwt.MapClaims {
+	if v, ok := data.(string); ok {
+		return jwt.MapClaims{
+			identityKey: v,
+		}
+	}
+	return jwt.MapClaims{}
+}
+
+func identityHandler(c *gin.Context) interface{} {
+	claims := jwt.ExtractClaims(c)
+	return claims["id"].(string)
 }

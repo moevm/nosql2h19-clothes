@@ -2,11 +2,10 @@ package roles
 
 import (
 	"encoding/json"
-	"log"
-	"os"
-
 	"fmt"
 	"github.com/mikespook/gorbac"
+	"log"
+	"os"
 )
 
 var Permissions = make(gorbac.Permissions)
