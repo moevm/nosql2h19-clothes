@@ -3,10 +3,12 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	jwt "github.com/appleboy/gin-jwt"
 	"github.com/gin-gonic/gin"
 	"log"
 	"nosql2h19-clothes/backend/models"
 	"os"
+	"time"
 )
 
 var isDev = false
@@ -57,6 +59,61 @@ func main() {
 
 	router := gin.Default()
 	router.Use(CORSMiddleware())
+
+	router.Use(CORSMiddleware())
+	router.Static("/api/upload", "./api/upload")
+	router.Static("/api/tmp", "./api/tmp")
+
+	//The jwt middleware
+
+	userAuthMiddleware, err := jwt.New(&jwt.GinJWTMiddleware{
+		Realm:           "secret zone",
+		Key:             []byte("secret key"),
+		Timeout:         24 * 720 * time.Hour,
+		MaxRefresh:      24 * 720 * time.Hour,
+		Authenticator:   routes.AuthenticatorUser,
+		Authorizator:    routes.AuthorizatorUser,
+		Unauthorized:    routes.UnauthorizedUser,
+		TokenLookup:     "header:Authorization",
+		TokenHeadName:   "Bearer",
+		TimeFunc:        time.Now,
+		IdentityKey:     identityKey,
+		PayloadFunc:     payloadFunc,
+		IdentityHandler: identityHandler,
+	})
+	/*
+		if err != nil {
+			log.Fatal("JWT Error:" + err.Error())
+		}
+	*/
+	//API
+	api := router.Group("/api")
+	api.POST("/login", userAuthMiddleware.LoginHandler)
+
+	api.Use(userAuthMiddleware.MiddlewareFunc())
+	{
+		api.GET("users/info", routes.GetUserInfo)
+		api.GET("users/id/:id", routes.GetUserById)
+		api.GET("statistics/manager", routes.GetTasksStatisticsForManagers)
+		api.GET("statistics/managersNames", routes.GetManagers)
+		managers := api.Group("/managers")
+		{
+			managers.POST("", routes.CreateUser)
+			managers.GET("/id/:id", routes.GetUserById)
+			managers.PUT("/:id", routes.UpdateUser)
+			managers.DELETE("/:id", routes.DeleteUser)
+			managers.GET("/managersNames", routes.GetUsers)
+		}
+		status := api.Group("/taskstatus")
+		{
+			status.POST("", routes.CreateTaskStatus)
+			status.GET("/id/:id", routes.ReadTaskStatusById)
+			status.PUT("/:id", routes.UpdateTaskStatus)
+			status.DELETE("/:id", routes.DeleteTaskStatus)
+			status.GET("", routes.GetTaskStatuses)
+		}
+
+	}
 	router.Run(":5000")
 }
 
