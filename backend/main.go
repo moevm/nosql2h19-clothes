@@ -7,9 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"nosql2h19-clothes/backend/models"
-	"nosql2h19-clothes/backend/routes"
 	"os"
-	"time"
 )
 
 var isDev = false
@@ -69,7 +67,7 @@ func main() {
 
 	//The jwt middleware
 
-	userAuthMiddleware, err := jwt.New(&jwt.GinJWTMiddleware{
+	/*userAuthMiddleware, err := jwt.New(&jwt.GinJWTMiddleware{
 		Realm:           "secret zone",
 		Key:             []byte("secret key"),
 		Timeout:         24 * 720 * time.Hour,
@@ -83,40 +81,21 @@ func main() {
 		IdentityKey:     identityKey,
 		PayloadFunc:     payloadFunc,
 		IdentityHandler: identityHandler,
-	})
+	})*/
 
-	if err != nil {
+	/*if err != nil {
 		log.Fatal("JWT Error:" + err.Error())
-	}
+	}*/
 
 	//API
-	api := router.Group("/api")
+	/*api := router.Group("/api")
 	api.POST("/login", userAuthMiddleware.LoginHandler)
 
 	api.Use(userAuthMiddleware.MiddlewareFunc())
 	{
-		/*	api.GET("users/info", routes.GetUserInfo)
-			api.GET("users/id/:id", routes.GetUserById)
-			api.GET("statistics/manager", routes.GetTasksStatisticsForManagers)
-			api.GET("statistics/managersNames", routes.GetManagers)
-			managers := api.Group("/managers")
-			{
-				managers.POST("", routes.CreateUser)
-				managers.GET("/id/:id", routes.GetUserById)
-				managers.PUT("/:id", routes.UpdateUser)
-				managers.DELETE("/:id", routes.DeleteUser)
-				managers.GET("/managersNames", routes.GetUsers)
-			}
-			status := api.Group("/taskstatus")
-			{
-				status.POST("", routes.CreateTaskStatus)
-				status.GET("/id/:id", routes.ReadTaskStatusById)
-				status.PUT("/:id", routes.UpdateTaskStatus)
-				status.DELETE("/:id", routes.DeleteTaskStatus)
-				status.GET("", routes.GetTaskStatuses)
-			}*/
 
-	}
+
+	}*/
 	router.Run(":5000")
 }
 
