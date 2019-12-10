@@ -12,8 +12,7 @@ var Permissions = make(gorbac.Permissions)
 var Rbac = gorbac.New()
 
 const AdminRole = "admin"
-const ManagerRole = "manager"
-const AccountantRole = "accountant"
+const UserRole = "user"
 
 func LoadJson(filename string, v interface{}) error {
 	f, err := os.Open(filename)
@@ -74,16 +73,10 @@ func Init() bool {
 		fmt.Println("The admin has NOT been granted permis cUser")
 	}
 
-	if Rbac.IsGranted(ManagerRole, Permissions["create-user"], nil) {
-		fmt.Println("The manager has been granted permis create-user")
+	if Rbac.IsGranted(UserRole, Permissions["create-worker"], nil) {
+		fmt.Println("The user has been granted permis create-worker")
 	} else {
-		fmt.Println("The manager has NOT been granted permis create-user")
-	}
-
-	if Rbac.IsGranted(AccountantRole, Permissions["create-worker"], nil) {
-		fmt.Println("The accountant has been granted permis create-worker")
-	} else {
-		fmt.Println("The accountant has NOT been granted permis create-worker")
+		fmt.Println("The user has NOT been granted permis create-worker")
 	}
 
 	return true
