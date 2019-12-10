@@ -68,15 +68,15 @@ func Init() bool {
 	}
 
 	if Rbac.IsGranted(AdminRole, Permissions["create-worker"], nil) {
-		fmt.Println("The admin has been granted permis create-worker")
+		fmt.Println("The admin has been granted permissions")
 	} else {
-		fmt.Println("The admin has NOT been granted permis cUser")
+		fmt.Println("The admin has NOT been granted permissions")
 	}
 
 	if Rbac.IsGranted(UserRole, Permissions["create-worker"], nil) {
-		fmt.Println("The user has been granted permis create-worker")
+		fmt.Println("The user has been granted permissions")
 	} else {
-		fmt.Println("The user has NOT been granted permis create-worker")
+		fmt.Println("The user has NOT been granted permissions")
 	}
 
 	return true
