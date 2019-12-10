@@ -7,7 +7,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"nosql2h19-clothes/backend/models"
+	"nosql2h19-clothes/backend/routes"
 	"os"
+	"time"
 )
 
 var isDev = false
@@ -67,7 +69,7 @@ func main() {
 
 	//The jwt middleware
 
-	/*userAuthMiddleware, err := jwt.New(&jwt.GinJWTMiddleware{
+	userAuthMiddleware, err := jwt.New(&jwt.GinJWTMiddleware{
 		Realm:           "secret zone",
 		Key:             []byte("secret key"),
 		Timeout:         24 * 720 * time.Hour,
@@ -81,21 +83,21 @@ func main() {
 		IdentityKey:     identityKey,
 		PayloadFunc:     payloadFunc,
 		IdentityHandler: identityHandler,
-	})*/
+	})
 
-	/*if err != nil {
+	if err != nil {
 		log.Fatal("JWT Error:" + err.Error())
-	}*/
+	}
 
 	//API
-	/*api := router.Group("/api")
+	api := router.Group("/api")
 	api.POST("/login", userAuthMiddleware.LoginHandler)
 
 	api.Use(userAuthMiddleware.MiddlewareFunc())
 	{
+		// added api groups later
 
-
-	}*/
+	}
 	router.Run(":5000")
 }
 
