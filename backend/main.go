@@ -43,7 +43,7 @@ func main() {
 	}
 
 	if models.InitDB(ParceConfig(isDev)) {
-		fmt.Println("Database successfull initialisation")
+		fmt.Println("Database successful initialisation")
 		/* ... */
 	} else {
 		log.Panic("Database not initialisation")

@@ -2,7 +2,7 @@
   {
     "Username":"bivok",
     "Password":"bivok1410",
-    "Role": 1,
+    "Role": "admin",
     "Name": "Ilya Bykov",
     "Email": "bikovbiv@gmail.com",
     "Age": 20,
@@ -72,7 +72,7 @@
   {
     "Username":"spas",
     "Password":"spas1410",
-    "Role": 0,
+    "Role": "user",
     "Name": "Artyom Spas",
     "Email": "spas@gmail.com",
     "Age": 20,

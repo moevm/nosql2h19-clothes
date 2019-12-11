@@ -19,7 +19,7 @@ type NewUser struct {
 	Email      string `json:"email" validate:"required,email"`
 	Age        int64  `json:"age"`
 	Gender     int64  `json:"gender"`
-	Role       int    `json:"Role"`
+	Role       string `json:"Role"`
 	Categories []Category
 	Places     []Place
 	Groups     []Group
