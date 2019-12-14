@@ -2,8 +2,10 @@ import React from 'react';
 // import ReactDOM from 'react-dom';
 import './index.css';
 import Form from './Form';
-import Table from './Table';
-import AddSmth from './AddSmth.js';
+import Places from './Places';
+import Categories from './Categories';
+import AddPlace from './AddPlace.js';
+import AddCategories from './AddCategories.js';
 import Home from './Home';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Make from './Make';
@@ -21,12 +23,13 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/" exact component={Form} />
-          <Route path="/home/places" exact component={Table} />
+          <Route path="/home/places" exact component={Places} />
           <Route path="/home/places/edit" component={EditPlace} />
-          <Route path="/home/categories" exact component={Table} />
+          <Route path="/home/categories" exact component={Categories} />
+          <Route path="/home/categories/add" exact component={AddCategories} />
           <Route path="/home/categories/show" exact component={ShowCat} />
           <Route path="/home/categories/show/add" exact component={AddObj} />
-          <Route path="/add" component={AddSmth} />
+          <Route path="/home/places/add" component={AddPlace} />
           <Route path="/home" exact component={Home} />
           <Route path="/home/day" component={Day} />
           <Route path="/home/make" component={Make} />
