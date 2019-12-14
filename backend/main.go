@@ -59,8 +59,8 @@ func main() {
 	fmt.Println("\n-------------------------------------\n")
 	users := models.GetUsers()
 	fmt.Println(users)
-	p := models.Place{Name: "job"}
-	models.DeletePlace("Ilya Bykov", p)
+	//p := models.Place{Name: "job"}
+	//models.DeletePlace("Ilya Bykov", p)
 
 	router := gin.Default()
 	router.Use(CORSMiddleware())
@@ -95,7 +95,7 @@ func main() {
 	api := router.Group("/api")
 	api.POST("/login", userAuthMiddleware.LoginHandler)
 
-	api.Use(userAuthMiddleware.MiddlewareFunc())
+	api.Use( /*userAuthMiddleware.MiddlewareFunc()*/ )
 	{
 		// added api groups later
 		admin := api.Group("/admin")
