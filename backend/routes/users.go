@@ -12,6 +12,10 @@ import (
 	"strconv"
 )
 
+func GetUsers(c *gin.Context) {
+	c.JSON(http.StatusOK, models.GetUsers())
+}
+
 type login struct {
 	Username string `form:"username" json:"username" binding:"required"`
 	Password string `form:"password" json:"password" binding:"required"`
@@ -106,13 +110,13 @@ func AuthenticatorUser(c *gin.Context) (interface{}, error) {
 
 func AuthorizatorUser(user interface{}, _ *gin.Context) bool {
 
-	userId, _ := user.(string)
-	existUserAuth := models.GetUserAuthByUserName(userId)
-	if existUserAuth != nil {
-		//if roles.Rbac.IsGranted(existUserAuth.Role, roles.Permissions["admin-panel"], nil) {
-		//	return true
-		//}
-	}
+	//userId, _ := user.(string)
+	//existUserAuth := models.GetUserAuthByUserName(userId)
+	//if existUserAuth != nil {
+	//if roles.Rbac.IsGranted(existUserAuth.Role, roles.Permissions["admin-panel"], nil) {
+	//	return true
+	//}
+	//	}
 
 	return false
 }
@@ -167,9 +171,6 @@ func DeleteUser(c *gin.Context) {
 	}
 }
 */
-func GetUsers(c *gin.Context) {
-	c.JSON(http.StatusOK, models.GetUsers())
-}
 
 func GetUserById(c *gin.Context) {
 	idParam := c.Param("id")

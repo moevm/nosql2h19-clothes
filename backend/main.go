@@ -57,6 +57,8 @@ func main() {
 	models.PrintPlaces(models.GetPlaces("Ilya Bykov"))
 	models.PrintGroups(models.GetGroups("Ilya Bykov"))
 	fmt.Println("\n-------------------------------------\n")
+	users := models.GetUsers()
+	fmt.Println(users)
 	p := models.Place{Name: "job"}
 	models.DeletePlace("Ilya Bykov", p)
 
@@ -96,7 +98,18 @@ func main() {
 	api.Use(userAuthMiddleware.MiddlewareFunc())
 	{
 		// added api groups later
+		admin := api.Group("/admin")
+		{
+			admin.GET("/users", routes.GetUsers)
 
+		}
+		user := api.Group("/home") //TODO change to id
+		{
+			user.GET("/places", routes.GetPlaces)
+			user.GET("/clothes", routes.GetClothes)
+			user.GET("/styles", routes.GetStyles)
+			user.GET("/categories", routes.GetCategories)
+		}
 	}
 	router.Run(":5000")
 }

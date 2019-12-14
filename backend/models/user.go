@@ -4,6 +4,7 @@ import (
 	"context"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"log"
 	"nosql2h19-clothes/examples/test_1/utils"
 )
 
@@ -31,7 +32,7 @@ type User struct {
 	Id         primitive.ObjectID `bson:"_id" json:"id,omitempty"`
 	Username   string             `json:"Username"`
 	Password   string             `json:"Password"`
-	Role       int                `json:"Role"`
+	Role       string             `json:"Role"`
 	Name       string             `json:"Name"`
 	Email      string             `json:"Email"`
 	Age        int                `json:"Age"`
@@ -43,11 +44,29 @@ type User struct {
 	Clothes    []Cloth
 }
 
+type UserInfo struct {
+	Id       primitive.ObjectID `bson:"_id" json:"id,omitempty"`
+	Username string             `json:"Username"`
+	Password string             `json:"Password"`
+	Role     string             `json:"Role"`
+	Name     string             `json:"Name"`
+	Email    string             `json:"Email"`
+	Age      int                `json:"Age"`
+	Gender   int                `json:"Gender"`
+}
+
 func GetUserByUserName(username string) *User {
 	var result User
 	err := USERS.FindOne(context.TODO(), bson.D{{"name", username}}).Decode(&result)
 	utils.CheckErr(err)
 	return &result
+}
+
+func GetUserIDByUserNameAndPassword(username string, password string) primitive.ObjectID {
+	var result User
+	err := USERS.FindOne(context.TODO(), bson.D{{"name", username}, {"password", password}}).Decode(&result)
+	utils.CheckErr(err)
+	return result.Id
 }
 
 func GetUserAuthByUserName(username string) *UserAuth {
@@ -83,8 +102,26 @@ func DeleteUser(user User) bool {
 }
 
 func GetUsers() []User {
-	var users []User
-	return users
+	var result []User
+	cur, err := USERS.Find(context.TODO(), bson.D{{}})
+	for cur.Next(context.TODO()) {
+		var elem User
+		err := cur.Decode(&elem)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		result = append(result, elem)
+	}
+	utils.CheckErr(err)
+
+	if err := cur.Err(); err != nil {
+		log.Fatal(err)
+	}
+
+	cur.Close(context.TODO())
+
+	return result
 }
 
 func GetUserById(id int64) *User {
