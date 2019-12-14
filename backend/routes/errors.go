@@ -9,6 +9,10 @@ type ApiStatus struct {
 	Text string `json:"status"`
 }
 
+type ApiStatusSimple struct {
+	Text string `json:"status"`
+}
+
 type ApiError struct {
 	Message string `json:"message"`
 	Code    int    `json:"code"`

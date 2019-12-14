@@ -105,10 +105,45 @@ func main() {
 		}
 		user := api.Group("/home") //TODO change to id
 		{
-			user.GET("/places", routes.GetPlaces)
-			user.GET("/clothes", routes.GetClothes)
-			user.GET("/styles", routes.GetStyles)
-			user.GET("/categories", routes.GetCategories)
+			places := user.Group("/places")
+			{
+				places.POST("", routes.AddPlace)
+				places.GET("", routes.GetPlaces)
+				places.PUT("/:id", routes.UpdatePlace)
+				places.DELETE("/:id", routes.DeletePlace)
+			}
+			styles := user.Group("/styles")
+			{
+				styles.POST("", routes.AddStyle)
+				styles.GET("", routes.GetStyles)
+				styles.PUT("/:id", routes.UpdateStyle)
+				styles.DELETE("/:id", routes.DeleteStyle)
+
+			}
+			clothes := user.Group("clothes")
+			{
+				clothes.POST("", routes.AddCloth)
+				clothes.GET("", routes.GetClothes)
+				clothes.PUT("/:id", routes.UpdateCloth)
+				clothes.DELETE("/:id", routes.DeleteCloth)
+
+			}
+			categories := user.Group("/categories")
+			{
+				categories.POST("/categories", routes.AddCategory)
+				categories.GET("/categories", routes.GetCategories)
+				categories.PUT("/:id", routes.UpdateCategory)
+				categories.DELETE("/:id", routes.DeleteCategory)
+
+			}
+			groups := user.Group("/groups")
+			{
+				groups.POST("", routes.AddGroup)
+				groups.GET("", routes.GetGroups)
+				groups.PUT("/:id", routes.UpdateGroup)
+				groups.DELETE("/:id", routes.DeleteGroup)
+
+			}
 		}
 	}
 	router.Run(":5000")
