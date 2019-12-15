@@ -130,8 +130,8 @@ func main() {
 			}
 			categories := user.Group("/categories")
 			{
-				categories.POST("/categories", routes.AddCategory)
-				categories.GET("/categories", routes.GetCategories)
+				categories.POST("", routes.AddCategory)
+				categories.GET("", routes.GetCategories)
 				categories.PUT("/:id", routes.UpdateCategory)
 				categories.DELETE("/:id", routes.DeleteCategory)
 
