@@ -37,11 +37,42 @@
             "Color": "red",
             "Notes": "smth",
             "Img":"smth",
-            "Category_name": "shoes"
+            "CategoryName": "shoes"
+          },
+          {
+            "Name": "jeans",
+            "Color": "blue",
+            "Notes": "smth",
+            "Img":"smth",
+            "CategoryName": "pants"
           }
         ],
+        "StartTime": "13:00",
+        "EndTime": "18:00",
         "Date": "01/01/2019",
-        "Place_name": "job"
+        "PlaceName": "job"
+      },
+      {
+        "Clothes": [
+          {
+            "Name": "кеды",
+            "Color": "зеленые",
+            "Notes": "smth",
+            "Img":"smth",
+            "CategoryName": "shoes"
+          },
+          {
+            "Name": "пиджак",
+            "Color": "розовый",
+            "Notes": "smth",
+            "Img":"smth",
+            "CategoryName": "pants"
+          }
+        ],
+        "StartTime": "9:00",
+        "EndTime": "12:00",
+        "Date": "01/01/2019",
+        "PlaceName": "institute"
       }
     ],
     "Styles": [
@@ -58,14 +89,14 @@
         "Color": "red",
         "Notes": "smth",
         "Img":"smth",
-        "Category_name": "shoes"
+        "CategoryName": "shoes"
       },
       {
         "Name": "jeans",
         "Color": "blue",
         "Notes": "smth",
         "Img":"smth",
-        "Category_name": "pants"
+        "CategoryName": "pants"
       }
     ]
   },
@@ -107,11 +138,13 @@
             "Color": "red",
             "Notes": "smth",
             "Img":"smth",
-            "Category_name": "shoes"
+            "CategoryName": "shoes"
           }
         ],
+        "StartTime": "13:00",
+        "EndTime": "18:00",
         "Date": "01/01/2019",
-        "Place_name": "job"
+        "PlaceName": "job"
       }
     ],
     "Styles": [
@@ -128,14 +161,14 @@
         "Color": "red",
         "Notes": "smth",
         "Img":"smth",
-        "Category_name": "shoes"
+        "CategoryName": "shoes"
       },
       {
         "Name": "jeans",
         "Color": "blue",
         "Notes": "smth",
         "Img":"smth",
-        "Category_name": "pants"
+        "CategoryName": "pants"
       }
     ]
   }

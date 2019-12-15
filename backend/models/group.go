@@ -9,9 +9,11 @@ import (
 
 type Group struct {
 	//Id         string `json:"id"`
-	Clothes    []Cloth
-	Date       string `json:"date"`
-	Place_name string `json:"place_name"`
+	Clothes   []Cloth
+	Date      string `json:"date"`
+	StartTime string `json:"startTime"`
+	EndTime   string `json:"endTime"`
+	PlaceName string `json:"placeName"`
 }
 
 func GetGroups(un string) []Group {
@@ -30,7 +32,7 @@ func AddGroup(un string, c Group) bool {
 
 func PrintGroups(c []Group) {
 	for i := range c {
-		print(c[i].Date, " ", c[i].Place_name, "\n")
+		print(c[i].Date, " ", c[i].PlaceName, "\n")
 	}
 }
 

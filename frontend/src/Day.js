@@ -30,23 +30,27 @@ class Day extends Component {
     }
   render() {
     let rows = [];
-    let times = '';
+    let start = '';
+    let end ='';
     let clothes = '';
     let places = [];
 
     this.state.groups.forEach((item, i) => {
-        places.push(item['place_name']);
-        times = item['date'];
+        places.push(item['placeName']);
+        start = item['startTime'];
+        end = item['endTime'];
         item['Clothes'].forEach((elem) => {
-            clothes = `${clothes}${(clothes ? ', ' : '')}${elem['color']} ${elem['name']} ${elem['notes']}`;
+            clothes = `${clothes}${(clothes ? ', ' : '')}${elem['color']} ${elem['name']}`;
         });
         rows.push(<tr>
-        <td>{times}</td>
+        <td>{start}</td>
+        <td>{end}</td>
         <td>{places}</td>
         <td>{clothes}</td>
         <td><button className="green">insert</button><button className="red">del</button></td>
         </tr>);
-        times = '';
+        start = '';
+        end = '';
         clothes = '';
         places = [];
     })
@@ -57,19 +61,15 @@ class Day extends Component {
             <table className="Day">
                 <thead>
                     <tr>
-                        <td>Время</td>
+                        <td>От</td>
+                        <td>До</td>
                         <td>Место</td>
                         <td>Одежда</td>
-                        <td>Actions</td>
+                        <td>Действия</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>9:00 - 13:00</td>
-                        <td>Институт</td>
-                        <td>Кроссовки, джинсы, кофта</td>
-                        <td><button className="green">insert</button><button className="red">del</button></td>
-                    </tr>
+
                     {rows}
                     
                 </tbody>
