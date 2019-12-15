@@ -11,9 +11,9 @@ type Group struct {
 	//Id         string `json:"id"`
 	Clothes   []Cloth
 	Date      string `json:"date"`
-	StartTime string `json:"start_time"`
-	EndTime   string `json:"end_time"`
-	PlaceName string `json:"place_name"`
+	StartTime string `json:"startTime"`
+	EndTime   string `json:"endTime"`
+	PlaceName string `json:"placeName"`
 }
 
 func GetGroups(un string) []Group {

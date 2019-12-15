@@ -13,7 +13,7 @@ type Cloth struct {
 	Color         string `json:"color"`
 	Notes         string `json:"notes"`
 	Img           string `json:"img"`
-	Category_name string `json:"category_name"`
+	Category_name string `json:"categoryName"`
 }
 
 /*func CreateCloth(c NewCloth) interface{} {
