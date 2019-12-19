@@ -34,10 +34,6 @@ func CreateClothes(c []interface{}) interface{} {
 }
 */
 
-func UpdateCloth(c Cloth) bool {
-	return true
-}
-
 func DeleteCloth(un string, c Cloth) bool {
 	u := GetUserByUserName(un)
 	updateResult, err := USERS.UpdateOne(context.TODO(), bson.D{{"_id", u.Id}}, bson.D{{"$addToSet", bson.D{{"clothes", c}}}})

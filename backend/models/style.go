@@ -39,3 +39,11 @@ func PrintStyles(c []Style) {
 		print(c[i].Name, "\n")
 	}
 }
+
+func UpdateStyle(un string, s string) bool {
+	u := GetUserByUserName(un)
+	updateResult, err := USERS.UpdateOne(context.TODO(), bson.D{{"_id", u.Id}, {"styles", s}}, bson.D{{"$set", bson.D{{"styleName", s}}}})
+	utils.CheckErr(err)
+	fmt.Println("update result: ", updateResult)
+	return true
+}
