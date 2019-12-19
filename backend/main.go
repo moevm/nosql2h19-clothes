@@ -214,7 +214,7 @@ func createFirstUsers() {
 	Styles     []Style
 	Clothes    []Cloth*/
 	admin := models.GetUserByEmail("admin@gmail.com")
-	if admin != nil {
+	if admin == nil {
 		newAdmin := models.NewUser{}
 		newAdmin.Username = "admin"
 		newAdmin.Password = routes.CryptUserPassword("admin")
@@ -223,17 +223,18 @@ func createFirstUsers() {
 		newAdmin.Email = "admin@gmail.com"
 		newAdmin.Age = 45
 		newAdmin.Gender = 0
-		newAdmin.Categories = nil
+		/*newAdmin.Categories = nil
 		newAdmin.Places = nil
 		newAdmin.Groups = nil
 		newAdmin.Styles = nil
-		newAdmin.Clothes = nil
+		newAdmin.Clothes = nil*/
 		res := models.CreateUser(newAdmin)
 		fmt.Println(res)
 	}
 	Gosha := models.GetUserByEmail("gosha@gmail.com")
-	if Gosha != nil {
+	if Gosha == nil {
 		newGosha := models.NewUser{}
+		newGosha.Username = "gosha"
 		newGosha.Password = routes.CryptUserPassword("gosha")
 		newGosha.Role = "user"
 		newGosha.Name = "Gosha Ivanov"
@@ -249,8 +250,9 @@ func createFirstUsers() {
 		fmt.Println(res1)
 	}
 	Ivan := models.GetUserByEmail("ivan@gmail.com")
-	if Ivan != nil {
+	if Ivan == nil {
 		newIvan := models.NewUser{}
+		newIvan.Username = "ivan"
 		newIvan.Password = routes.CryptUserPassword("ivan")
 		newIvan.Role = "user"
 		newIvan.Name = "Ivan Ivanov"
@@ -266,8 +268,9 @@ func createFirstUsers() {
 		fmt.Println(res2)
 	}
 	Sergey := models.GetUserByUsername("Ivan Ivanov")
-	if Sergey != nil {
+	if Sergey == nil {
 		newSergey := models.NewUser{}
+
 		newSergey.Password = routes.CryptUserPassword("sergey")
 		newSergey.Role = "user"
 		newSergey.Name = "Sergey Ivanov"
