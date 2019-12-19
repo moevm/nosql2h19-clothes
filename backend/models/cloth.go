@@ -36,7 +36,7 @@ func CreateClothes(c []interface{}) interface{} {
 
 func DeleteCloth(un string, c Cloth) bool {
 	u := GetUserByUserName(un)
-	updateResult, err := USERS.UpdateOne(context.TODO(), bson.D{{"_id", u.Id}}, bson.D{{"$addToSet", bson.D{{"clothes", c}}}})
+	updateResult, err := USERS.UpdateOne(context.TODO(), bson.D{{"_id", u.Id}}, bson.D{{"$pull", bson.D{{"clothes", c}}}})
 	utils.CheckErr(err)
 	fmt.Println("update result: ", updateResult)
 	return true
@@ -46,7 +46,7 @@ func DeleteClothByStyle(un string, s string) bool {
 	u := GetUserByUserName(un)
 	for _, c := range u.Clothes {
 		if c.StyleName == s {
-			updateResult, err := USERS.UpdateOne(context.TODO(), bson.D{{"_id", u.Id}}, bson.D{{"$addToSet", bson.D{{"clothes", c}}}})
+			updateResult, err := USERS.UpdateOne(context.TODO(), bson.D{{"_id", u.Id}}, bson.D{{"$pull", bson.D{{"clothes", c}}}})
 			utils.CheckErr(err)
 			fmt.Println("update result: ", updateResult)
 		}
@@ -59,7 +59,7 @@ func DeleteClothByCategory(un string, s string) bool {
 	for _, c := range u.Clothes {
 		if c.CategoryName == s {
 			fmt.Println("res:", c)
-			updateResult, err := USERS.UpdateOne(context.TODO(), bson.D{{"_id", u.Id}}, bson.D{{"$addToSet", bson.D{{"clothes", c}}}})
+			updateResult, err := USERS.UpdateOne(context.TODO(), bson.D{{"_id", u.Id}}, bson.D{{"$pull", bson.D{{"clothes", c}}}})
 			utils.CheckErr(err)
 			fmt.Println("update result: ", updateResult)
 		}
