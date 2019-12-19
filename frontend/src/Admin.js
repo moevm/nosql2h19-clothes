@@ -37,7 +37,7 @@ class Admin extends Component {
         formData.append("myFile", document.getElementById("file").files[0]);
 
         axios
-            .post(endpoint + "/admin", formData)
+            .post(endpoint + "/api/admin", formData)
             .then((response) => {
                 alert(response.status);
             })

@@ -86,10 +86,21 @@ func LoadNewUsers(path string) {
 		print(Users[i].Name, "\n")
 	}
 	print("\n")
+	flag := false
+	emails := GetUsersEmails()
+	fmt.Println(emails)
 	for i := range Users {
 		user := Users[i]
-		result, insertErr := USERS.InsertOne(ctx, user)
-		utils.CheckErr(insertErr)
-		print("InsertOne() API result:", result)
+		for _, j := range emails {
+			if j == user.Email {
+				flag = true
+			}
+		}
+		if flag == false {
+			result, insertErr := USERS.InsertOne(ctx, user)
+			utils.CheckErr(insertErr)
+			print("InsertOne() API result:", result)
+		}
+		flag = false
 	}
 }

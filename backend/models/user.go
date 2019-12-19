@@ -156,3 +156,31 @@ func GetUserByUsername(username string) *User {
 
 	return &user
 }
+
+func GetUsersEmails() []string {
+	var result []User
+	cur, err := USERS.Find(context.TODO(), bson.D{{}})
+	for cur.Next(context.TODO()) {
+		var elem User
+		err := cur.Decode(&elem)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		result = append(result, elem)
+	}
+	if err != nil {
+		//log.Fatal(err)
+		return nil
+	}
+	if err := cur.Err(); err != nil {
+		//log.Fatal(err)
+		return nil
+	}
+	var emails []string
+	for _, c := range result {
+		emails = append(emails, c.Email)
+	}
+	cur.Close(context.TODO())
+	return emails
+}

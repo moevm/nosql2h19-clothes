@@ -4,11 +4,12 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"nosql2h19-clothes/backend/models"
 	"time"
 )
 
 func UploadFile(c *gin.Context) {
-	file, err := c.FormFile("file")
+	file, err := c.FormFile("myFile")
 	if err != nil {
 		c.String(http.StatusBadRequest, fmt.Sprintf("get form err: %s", err.Error()))
 		return
@@ -20,6 +21,7 @@ func UploadFile(c *gin.Context) {
 		c.String(http.StatusBadRequest, fmt.Sprintf("upload file err: %s", err.Error()))
 		return
 	}
+	models.LoadNewUsers(FileName)
 }
 
 func UnloadFile(c *gin.Context) {
