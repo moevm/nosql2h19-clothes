@@ -21,22 +21,31 @@ class Categories extends Component {
     axios
       .get(endpoint + "/api/home/categories")
       .then(res => {
-          console.log(res);
+          // console.log(res);
           this.setState({
               categories: res.data.map(item => {
                   return item['name'];
               })
           })
       })
-    //   fetch("http://localhost:5000/api/home/places")
-    //       .then(data => console.log(data));
   }
 
-  render() {
+    deleteCategory = (id) => {
+        axios
+            .delete(endpoint + `/api/home/categories/${id}`)
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+                document.location.reload(true);
+            })
+    }
+
+
+    render() {
     let rows = [];
     this.state.categories.forEach((item, i) => {
         rows.push(<tr key={i}><td>{item}</td>
-        <td><button className="green">see</button><button className="red">del</button></td></tr>)
+        <td><button className="green" onClick={() => document.location.reload(true)}>see</button><button className="red" onClick={(e) => this.deleteCategory(item, e)}>del</button></td></tr>)
     })
     return (
     <div className="wrap">

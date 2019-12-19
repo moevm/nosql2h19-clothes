@@ -29,7 +29,7 @@ class AddPlace extends Component {
         .then((response) => {
           alert(response.status);
         })
-}
+  }
   render() {
     return (
     <div className="AddPlace">
