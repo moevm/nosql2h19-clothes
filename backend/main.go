@@ -49,7 +49,7 @@ func main() {
 	} else {
 		log.Panic("Database not initialisation")
 	}
-	//models.LoadNewUsers(pathToUsersDb)
+	models.LoadNewUsers(pathToUsersDb)
 	fmt.Println("\nGET TEST for Ilya Bykov:\n")
 	id := models.GetUserIdByUserName("Ilya Bykov")
 	fmt.Println(id)
@@ -268,7 +268,7 @@ func createFirstUsers() {
 		res2 := models.CreateUser(newIvan)
 		fmt.Println(res2)
 	}
-	Sergey := models.GetUserByUsername("Ivan Ivanov")
+	Sergey := models.GetUserByEmail("sergey@gmail.com")
 	if Sergey == nil {
 		newSergey := models.NewUser{}
 
