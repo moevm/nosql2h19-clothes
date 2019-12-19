@@ -32,17 +32,6 @@ class Admin extends Component {
             })
     }
 
-    sendFile = () => {
-        let formData = new FormData();
-        formData.append("myFile", document.getElementById("file").files[0]);
-
-        axios
-            .post(endpoint + "/admin", formData)
-            .then((response) => {
-                alert(response.status);
-            })
-    }
-
   render() {
       let rows = [];
       let email = '';
@@ -86,8 +75,7 @@ class Admin extends Component {
                 <button><Link to='/home/places'>Статистика</Link></button>
                 <button><Link to='/home/categories'>Add user</Link></button>
                 <button>Экспорт</button>
-                <input type="file" id="file"></input>
-                <button onClick={this.sendFile}>Импорт</button>
+                <button>Импорт</button>
             </div>
         </div>
     );
