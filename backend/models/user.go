@@ -11,6 +11,7 @@ import (
 type UserAuth struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
+	Role     string `json:"Role"`
 }
 
 type NewUser struct {
@@ -71,7 +72,14 @@ func GetUserIDByUserNameAndPassword(username string, password string) primitive.
 
 func GetUserAuthByUserName(username string) *UserAuth {
 	user := UserAuth{}
-
+	var result User
+	err := USERS.FindOne(context.TODO(), bson.D{{"name", username}}).Decode(&result)
+	if err != nil {
+		log.Fatal(err)
+		return nil
+	}
+	user.Username = result.Username
+	user.Password = result.Password
 	return &user
 }
 

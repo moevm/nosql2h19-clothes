@@ -8,6 +8,7 @@ import (
 	"gopkg.in/go-playground/validator.v9"
 	"net/http"
 	"nosql2h19-clothes/backend/models"
+	"nosql2h19-clothes/backend/roles"
 	"nosql2h19-clothes/backend/utils"
 	"strconv"
 )
@@ -110,13 +111,13 @@ func AuthenticatorUser(c *gin.Context) (interface{}, error) {
 
 func AuthorizatorUser(user interface{}, _ *gin.Context) bool {
 
-	//userId, _ := user.(string)
-	//existUserAuth := models.GetUserAuthByUserName(userId)
-	//if existUserAuth != nil {
-	//if roles.Rbac.IsGranted(existUserAuth.Role, roles.Permissions["admin-panel"], nil) {
-	//	return true
-	//}
-	//	}
+	userId, _ := user.(string)
+	existUserAuth := models.GetUserAuthByUserName(userId)
+	if existUserAuth != nil {
+		if roles.Rbac.IsGranted(existUserAuth.Role, roles.Permissions["admin"], nil) {
+			return true
+		}
+	}
 
 	return false
 }

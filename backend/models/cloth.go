@@ -9,11 +9,12 @@ import (
 
 type Cloth struct {
 	//Id            string `json:"id"`
-	Name          string `json:"name"`
-	Color         string `json:"color"`
-	Notes         string `json:"notes"`
-	Img           string `json:"img"`
-	Category_name string `json:"categoryName"`
+	Name         string `json:"name"`
+	Color        string `json:"color"`
+	Notes        string `json:"notes"`
+	Img          string `json:"img"`
+	CategoryName string `json:"categoryName"`
+	StyleName    string `json:"styleName"`
 }
 
 /*func CreateCloth(c NewCloth) interface{} {
