@@ -58,6 +58,7 @@ func DeleteClothByCategory(un string, s string) bool {
 	u := GetUserByUserName(un)
 	for _, c := range u.Clothes {
 		if c.CategoryName == s {
+			fmt.Println("res:", c)
 			updateResult, err := USERS.UpdateOne(context.TODO(), bson.D{{"_id", u.Id}}, bson.D{{"$addToSet", bson.D{{"clothes", c}}}})
 			utils.CheckErr(err)
 			fmt.Println("update result: ", updateResult)

@@ -102,6 +102,7 @@ func main() {
 		admin := api.Group("/admin")
 		{
 			admin.GET("/users", routes.GetUsers)
+			admin.POST("", routes.UploadFile)
 
 		}
 		user := api.Group("/home") //TODO change to id
