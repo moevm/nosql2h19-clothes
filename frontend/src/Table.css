@@ -42,7 +42,7 @@ td {
     width: 100%;
     display: flex;
     flex-direction: column;
-    transform: translateY(50%);    
+    transform: translateY(150px);
 }
 
 .wrap > button {

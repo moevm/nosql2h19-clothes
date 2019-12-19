@@ -32,11 +32,25 @@ class Places extends Component {
     //       .then(data => console.log(data));
   }
 
+  deletePlace = (id) => {
+      axios
+          .delete(endpoint + `/api/home/places/${id}`)
+          .then(res => {
+              console.log(res);
+              console.log(res.data);
+              document.location.reload(true);
+          })
+  }
+
+  pageReload = () => {
+      document.location.reload(true);
+  }
+
   render() {
     let rows = [];
     this.state.places.forEach((item, i) => {
         rows.push(<tr key={i}><td>{item}</td>
-        <td><button className="green">see</button><button className="red">del</button></td></tr>)
+        <td><button className="green" onClick={this.pageReload}>see</button><button className="red" onClick={(e) => this.deletePlace(item, e)}>del</button></td></tr>)
     })
     return (
     <div className="wrap">
