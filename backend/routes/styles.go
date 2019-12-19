@@ -40,7 +40,8 @@ func DeleteStyle(c *gin.Context) {
 	idParam := c.Param(utils.IdKey)
 	w := models.Style{Name: idParam}
 	res := models.DeleteStyle(user, w)
-	if res == true {
+	res2 := models.DeleteClothByStyle(user, w.Name)
+	if res == true && res2 == true {
 		c.JSON(http.StatusOK, ApiMessage{utils.SuccessMessage})
 	} else {
 		c.JSON(http.StatusBadRequest, ApiMessage{utils.EntityNotDeletedMessage(styleTitle)})
