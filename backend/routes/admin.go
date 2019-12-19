@@ -8,7 +8,7 @@ import (
 )
 
 func UploadFile(c *gin.Context) {
-	file, err := c.FormFile("file")
+	file, err := c.FormFile("myFile")
 	if err != nil {
 		c.String(http.StatusBadRequest, fmt.Sprintf("get form err: %s", err.Error()))
 		return
