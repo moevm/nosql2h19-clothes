@@ -23,7 +23,7 @@ var CTX context.Context
 //var CATEGORIES *mongo.Collection
 //var PLACES *mongo.Collection
 //var CLOTHES *mongo.Collection
-var Users []NewUser
+var Users []User
 
 func InitDB(port string) bool {
 

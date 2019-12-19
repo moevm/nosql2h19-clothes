@@ -44,6 +44,7 @@ func main() {
 
 	if models.InitDB(ParceConfig(isDev)) {
 		fmt.Println("Database successful initialisation")
+		createFirstUsers()
 		/* ... */
 	} else {
 		log.Panic("Database not initialisation")
@@ -72,18 +73,18 @@ func main() {
 	//The jwt middleware
 
 	userAuthMiddleware, err := jwt.New(&jwt.GinJWTMiddleware{
-		Realm:           "secret zone",
-		Key:             []byte("secret key"),
-		Timeout:         24 * 720 * time.Hour,
-		MaxRefresh:      24 * 720 * time.Hour,
-		Authenticator:   routes.AuthenticatorUser,
-		Authorizator:    routes.AuthorizatorUser,
-		Unauthorized:    routes.UnauthorizedUser,
-		TokenLookup:     "header:Authorization",
-		TokenHeadName:   "Bearer",
-		TimeFunc:        time.Now,
-		IdentityKey:     identityKey,
-		PayloadFunc:     payloadFunc,
+		Realm:         "secret zone",
+		Key:           []byte("secret key"),
+		Timeout:       24 * 720 * time.Hour,
+		MaxRefresh:    24 * 720 * time.Hour,
+		Authenticator: routes.AuthenticatorUser,
+		Authorizator:  routes.AuthorizatorUser,
+		Unauthorized:  routes.UnauthorizedUser,
+		TokenLookup:   "header:Authorization",
+		TokenHeadName: "Bearer",
+		TimeFunc:      time.Now,
+		IdentityKey:   identityKey,
+		//PayloadFunc:     payloadFunc,
 		IdentityHandler: identityHandler,
 	})
 
@@ -185,16 +186,100 @@ func ParceConfig(isDev bool) string {
 	return configuration.Prod.DBPort
 }
 
-func payloadFunc(data interface{}) jwt.MapClaims {
+/*func payloadFunc(data interface{}) jwt.MapClaims {
 	if v, ok := data.(string); ok {
 		return jwt.MapClaims{
 			identityKey: v,
 		}
 	}
 	return jwt.MapClaims{}
-}
+}*/
 
 func identityHandler(c *gin.Context) interface{} {
 	claims := jwt.ExtractClaims(c)
 	return claims["id"].(string)
+}
+
+func createFirstUsers() {
+	/*Username   string             `json:"Username"`
+	Password   string             `json:"Password"`
+	Role       string             `json:"Role"`
+	Name       string             `json:"Name"`
+	Email      string             `json:"Email"`
+	Age        int                `json:"Age"`
+	Gender     int                `json:"Gender"`
+	Categories []Category
+	Places     []Place
+	Groups     []Group
+	Styles     []Style
+	Clothes    []Cloth*/
+	admin := models.GetUserByEmail("admin@gmail.com")
+	if admin != nil {
+		newAdmin := models.NewUser{}
+		newAdmin.Username = "admin"
+		newAdmin.Password = routes.CryptUserPassword("admin")
+		newAdmin.Role = "admin"
+		newAdmin.Name = "admin"
+		newAdmin.Email = "admin@gmail.com"
+		newAdmin.Age = 45
+		newAdmin.Gender = 0
+		newAdmin.Categories = nil
+		newAdmin.Places = nil
+		newAdmin.Groups = nil
+		newAdmin.Styles = nil
+		newAdmin.Clothes = nil
+		res := models.CreateUser(newAdmin)
+		fmt.Println(res)
+	}
+	Gosha := models.GetUserByEmail("gosha@gmail.com")
+	if Gosha != nil {
+		newGosha := models.NewUser{}
+		newGosha.Password = routes.CryptUserPassword("gosha")
+		newGosha.Role = "user"
+		newGosha.Name = "Gosha Ivanov"
+		newGosha.Email = "gosha@gmail.com"
+		newGosha.Age = 21
+		newGosha.Gender = 0
+		newGosha.Categories = nil
+		newGosha.Places = nil
+		newGosha.Groups = nil
+		newGosha.Styles = nil
+		newGosha.Clothes = nil
+		res1 := models.CreateUser(newGosha)
+		fmt.Println(res1)
+	}
+	Ivan := models.GetUserByEmail("ivan@gmail.com")
+	if Ivan != nil {
+		newIvan := models.NewUser{}
+		newIvan.Password = routes.CryptUserPassword("ivan")
+		newIvan.Role = "user"
+		newIvan.Name = "Ivan Ivanov"
+		newIvan.Email = "ivan@gmail.com"
+		newIvan.Age = 28
+		newIvan.Gender = 0
+		newIvan.Categories = nil
+		newIvan.Places = nil
+		newIvan.Groups = nil
+		newIvan.Styles = nil
+		newIvan.Clothes = nil
+		res2 := models.CreateUser(newIvan)
+		fmt.Println(res2)
+	}
+	Sergey := models.GetUserByUsername("Ivan Ivanov")
+	if Sergey != nil {
+		newSergey := models.NewUser{}
+		newSergey.Password = routes.CryptUserPassword("sergey")
+		newSergey.Role = "user"
+		newSergey.Name = "Sergey Ivanov"
+		newSergey.Email = "sergey@gmail.com"
+		newSergey.Age = 18
+		newSergey.Gender = 0
+		newSergey.Categories = nil
+		newSergey.Places = nil
+		newSergey.Groups = nil
+		newSergey.Styles = nil
+		newSergey.Clothes = nil
+		res3 := models.CreateUser(newSergey)
+		fmt.Println(res3)
+	}
 }

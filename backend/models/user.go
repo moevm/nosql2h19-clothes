@@ -2,6 +2,7 @@ package models
 
 import (
 	"context"
+	"fmt"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"log"
@@ -63,6 +64,15 @@ func GetUserByUserName(username string) *User {
 	return &result
 }
 
+func GetUserByEmail(email string) *User {
+	var result User
+	err := USERS.FindOne(context.TODO(), bson.D{{"email", email}}).Decode(&result)
+	if err != nil {
+		return nil
+	}
+	return &result
+}
+
 func GetUserIDByUserNameAndPassword(username string, password string) primitive.ObjectID {
 	var result User
 	err := USERS.FindOne(context.TODO(), bson.D{{"name", username}, {"password", password}}).Decode(&result)
@@ -92,14 +102,15 @@ func GetUserIdByUserName(username string) interface{} {
 
 func CreateUser(u NewUser) interface{} {
 	insertResult, err := USERS.InsertOne(context.TODO(), u)
+	fmt.Println(insertResult)
 	utils.CheckErr(err)
 	var result User
-	err = USERS.FindOne(context.TODO(), insertResult).Decode(&result)
+	err = USERS.FindOne(context.TODO(), bson.D{{"email", u.Email}}).Decode(&result)
 	utils.CheckErr(err)
 	return result.Id
 }
 
-func UpdateUser(userAuth NewUser) bool {
+func UpdateUser(userAuth User) bool {
 
 	return true
 }
