@@ -42,7 +42,7 @@ class Day extends Component {
         item['Clothes'].forEach((elem) => {
             clothes = `${clothes}${(clothes ? ', ' : '')}${elem['color']} ${elem['name']}`;
         });
-        rows.push(<tr>
+        rows.push(<tr key={i}>
         <td>{start}</td>
         <td>{end}</td>
         <td>{places}</td>

@@ -2,3 +2,6 @@
     width: 30%;
     font-weight: 900;
 }
+table.Admin {
+    max-width: 800px;
+}

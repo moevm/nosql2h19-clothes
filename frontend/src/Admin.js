@@ -1,36 +1,81 @@
 import React, {Component} from 'react';
 import './Admin.css';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
+
+let endpoint = "http://localhost:5000";
 
 class Admin extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            users: []
+        }
+    }
+
+    componentDidMount() {
+        this.getUsers();
+    }
+
+    getUsers = () => {
+        axios
+            .get(endpoint + "/api/admin/users")
+            .then(res => {
+                console.log(res.data);
+                this.setState({
+                    users: res.data.map(item => {
+                        return item;
+                    })
+                })
+            })
+    }
+
   render() {
+      let rows = [];
+      let email = '';
+      let name ='';
+      let age = '';
+
+      this.state.users.forEach((item, i) => {
+          // places.push(item['placeName']);
+          email = item['Email'];
+          name = item['Name'];
+          age = item['Age'];
+          // item['Clothes'].forEach((elem) => {
+          //     clothes = `${clothes}${(clothes ? ', ' : '')}${elem['color']} ${elem['name']}`;
+          // });
+          rows.push(<tr key={i}>
+          <td>{email}</td>
+          <td>{name}</td>
+          <td>{age}</td>
+          <td><button className="green">insert</button><button className="red">del</button></td>
+          </tr>);
+          email = '';
+          name = '';
+          age = '';
+      })
     return (
         <div className="wrap Admin">
             <table className="Admin">
                 <thead>
                     <tr>
-                        <td>User</td>
+                        <td>Email</td>
+                        <td>Name</td>
+                        <td>Age</td>
                         <td>Actions</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>9:00 - 13:00</td>
-                        <td><button className="green"><Link to='/admin/edit'>fix</Link></button><button className="red">del</button></td>
-                    </tr>
-                    <tr>
-                        <td>13:00 - 16:00</td>
-                        <td><button className="green"><Link to='/admin/edit'>fix</Link></button><button className="red">del</button></td>
-                    </tr>
-                    <tr>
-                        <td>16:00 - 18:00</td>
-                        <td><button className="green"><Link to='/admin/edit'>fix</Link></button><button className="red">del</button></td>
-                    </tr>
+                    {rows}
                 </tbody>
             </table>
             <div className="wrap-btn Admin">
                 <button><Link to='/home/places'>Статистика</Link></button>
                 <button><Link to='/home/categories'>Add user</Link></button>
+                <button>Экспорт</button>
+                <button>Импорт</button>
             </div>
         </div>
     );
