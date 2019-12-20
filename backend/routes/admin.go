@@ -29,7 +29,8 @@ func UploadFile(c *gin.Context) {
 func UnloadFile(c *gin.Context) {
 	data := models.GetUsers()
 	file, _ := json.MarshalIndent(data, "", " ")
-	filename := "mydb_" + time.Now().Format("20060102150405") + ".json"
+	//filename := "mydb_" + time.Now().Format("20060102150405") + ".json"
+	filename := "mydb.json"
 	_ = ioutil.WriteFile("api/tmp/"+filename, file, 0644)
 	print(filename)
 	c.JSON(http.StatusOK, filename)

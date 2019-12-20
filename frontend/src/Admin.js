@@ -39,9 +39,7 @@ class Admin extends Component {
             .then(res => {
                 console.log(res.data);
                 this.setState({
-                    filename: res.data.map(s => {
-                        return s;
-                    })
+                    filename: res.data
                 })
             })
     }
@@ -58,10 +56,11 @@ class Admin extends Component {
     }
 
     downloadFile = () => {
-        let filename = this.getFileName();
+        let filename_ = this.getFileName();
+        let filename = 'mydb.json'
         let link = endpoint + '/api/tmp/';
         const dummy = document.createElement("a");
-        dummy.href = link + filename;
+        dummy.href = link  + filename;
         dummy.download = filename;
 
         document.body.appendChild(dummy);
