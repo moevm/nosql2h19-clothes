@@ -1,8 +1,10 @@
 package routes
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"io/ioutil"
 	"net/http"
 	"nosql2h19-clothes/backend/models"
 	"time"
@@ -25,5 +27,7 @@ func UploadFile(c *gin.Context) {
 }
 
 func UnloadFile(c *gin.Context) {
-
+	data := models.GetUsers()
+	file, _ := json.MarshalIndent(data, "", " ")
+	_ = ioutil.WriteFile("test.json", file, 0644)
 }

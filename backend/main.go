@@ -49,7 +49,7 @@ func main() {
 	} else {
 		log.Panic("Database not initialisation")
 	}
-	models.LoadNewUsers(pathToUsersDb)
+	//models.LoadNewUsers(pathToUsersDb)
 	fmt.Println("\nGET TEST for Ilya Bykov:\n")
 	id := models.GetUserIdByUserName("Ilya Bykov")
 	fmt.Println(id)
@@ -141,7 +141,7 @@ func main() {
 			groups := user.Group("/groups")
 			{
 				groups.POST("", routes.AddGroup)
-				groups.GET("", routes.GetGroups)
+				groups.GET("/:id", routes.GetGroupByDate)
 				groups.PUT("/:id", routes.UpdateGroup)
 				groups.DELETE("/:id", routes.DeleteGroup)
 

@@ -43,3 +43,16 @@ func DeleteGroup(un string, c Group) bool {
 	fmt.Println("update result: ", updateResult)
 	return true
 }
+
+func GetGroupByDate(un string, s string) []Group {
+	u := GetUserByUserName(un)
+	cs := u.Groups
+	var res []Group
+	fmt.Println("run")
+	for _, i := range cs {
+		if i.Date == s {
+			res = append(res, i)
+		}
+	}
+	return res
+}

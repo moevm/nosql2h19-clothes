@@ -16,6 +16,13 @@ func GetGroups(c *gin.Context) {
 	c.JSON(http.StatusOK, groups)
 }
 
+func GetGroupByDate(c *gin.Context) {
+	idParam := c.Param(utils.IdKey)
+	user := "Ilya Bykov"
+	groups := models.GetGroupByDate(user, idParam)
+	c.JSON(http.StatusOK, groups)
+}
+
 func AddGroup(c *gin.Context) {
 	user := "Ilya Bykov"
 	var w models.Group
