@@ -60,8 +60,8 @@ class Clothes extends Component {
             //     clothes = `${clothes}${(clothes ? ', ' : '')}${elem['color']} ${elem['name']}`;
             // });
             rows.push(<tr key={i}>
-                <td>{category}</td>
                 <td>{name}</td>
+                <td>{category}</td>
                 <td>{style}</td>
                 <td><button className="green">insert</button><button className="red" onClick={(e) => this.deleteClothe(item['name'], e)}>del</button></td>
             </tr>);
@@ -84,7 +84,7 @@ class Clothes extends Component {
             {rows}
             </tbody>
             </table>
-            <button><Link to="/home/places/add">Добавление одежды</Link></button>
+            <button><Link to="/home/clothes/add">Добавление одежды</Link></button>
         </div>
     );
     }

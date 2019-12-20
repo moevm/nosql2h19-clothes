@@ -18,7 +18,7 @@ class Day extends Component {
 
     getGroups = () => {
         axios
-            .get(endpoint + "/api/home/groups")
+            .get(endpoint + `/api/home/groups/${this.props.match.params.id}`)
             .then(res => {
                 console.log(res);
                 this.setState({
@@ -54,7 +54,7 @@ class Day extends Component {
         clothes = '';
         places = [];
     })
-
+    console.log(this.props.match.params.id);
     return (
         <div className="wrap Day">
           <h3>График на день</h3>

@@ -72,6 +72,7 @@ class Home extends React.Component {
         let tr = [];
         let index = (this.state.current.getDay() + 6) % 7;
         let k = 1 - index;
+        let tmp = 0;
         const monthNames = [ "Январь","Февраль","Март","Апрель","Май","Июнь",
     "Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь" ];
 
@@ -80,7 +81,11 @@ class Home extends React.Component {
         for (let i = 0; i < ROWS; i++) {
             tr = [];
             for (let j = 0; j < COLS; j++) {
-                tr.push(<td style={{backgroundColor: "#ffffff"}}><Link to='/home/day'>{(k > 0 && k <= diff) ? k : ''}</Link></td>);
+                tmp = (k > 0 && k <= diff) ? k : '';
+                if (tmp < 10) {
+                    tmp = `0${tmp}`;
+                }
+                tr.push(<td style={{backgroundColor: "#ffffff"}}><Link to={`/home/day/${this.state.month + 1}${tmp}${this.state.year}`}>{(k > 0 && k <= diff) ? k : ''}</Link></td>);
                 k += 1;
             }
             table.push(<tr>{tr}</tr>);

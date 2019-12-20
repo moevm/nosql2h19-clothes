@@ -33,7 +33,7 @@ function App() {
           <Route path="/home/categories/show/add" exact component={AddObj} />
           <Route path="/home/places/add" component={AddPlace} />
           <Route path="/home" exact component={Home} />
-          <Route path="/home/day" component={Day} />
+          <Route path="/home/day/:id" component={Day} />
           <Route path="/home/make" component={Make} />
           <Route path="/admin" exact component={Admin} />
           <Route path="/admin/add" exact component={AddUser} />

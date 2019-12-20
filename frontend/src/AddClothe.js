@@ -40,7 +40,7 @@ class AddClothe extends Component {
                 category: this.state.category
             })
             .then((response) => {
-                alert(response.status);
+                alert(response.statusText);
             })
     }
     render() {
@@ -53,7 +53,7 @@ class AddClothe extends Component {
             <div><label>Категория</label><input type="text" placeholder="Категория" onChange={this.handleChangeCategory}></input></div>
         </div>
         <div className="wrap-btn">
-            <button className="addSmth_button"><Link to="/home/places/">Back</Link></button>
+            <button className="addSmth_button"><Link to="/home/clothes/">Back</Link></button>
         <button type="submit" className="addSmth_button" onClick={this.addClothe}>Добавить</button>
         </div>
         </div>
