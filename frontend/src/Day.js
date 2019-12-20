@@ -21,11 +21,15 @@ class Day extends Component {
             .get(endpoint + `/api/home/groups/${this.props.match.params.id}`)
             .then(res => {
                 console.log(res);
-                this.setState({
-                    groups: res.data.map(item => {
-                        return item;
+                if (res.data != null) {
+                    this.setState({
+                        groups: res.data.map(item => {
+                            return item;
+                        })
                     })
-                })
+                } else {
+                    alert("На этот день график пуст")
+                }
             })
     }
   render() {

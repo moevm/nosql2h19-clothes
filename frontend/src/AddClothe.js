@@ -12,8 +12,8 @@ class AddClothe extends Component {
         super(props);
         this.state = {
             name: '',
-            style: '',
-            category: ''
+            styleName: '',
+            categoryName: ''
         };
 
         this.handleChangeName = this.handleChangeName.bind(this);
@@ -25,10 +25,10 @@ class AddClothe extends Component {
         this.setState({name: event.target.value});
     }
     handleChangeCategory = (event) => {
-        this.setState({category: event.target.value});
+        this.setState({categoryName: event.target.value});
     }
     handleChangeStyle = (event) => {
-        this.setState({style: event.target.value});
+        this.setState({styleName: event.target.value});
     }
 
     addClothe = () => {
@@ -36,8 +36,8 @@ class AddClothe extends Component {
         axios
             .post(endpoint + "/api/home/clothes", {
                 name: this.state.name,
-                style: this.state.style,
-                category: this.state.category
+                styleName: this.state.styleName,
+                categoryName: this.state.categoryName
             })
             .then((response) => {
                 alert(response.statusText);
