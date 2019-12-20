@@ -38,8 +38,8 @@ func UpdateCloth(c *gin.Context) {
 func DeleteCloth(c *gin.Context) {
 	user := "Ilya Bykov"
 	idParam := c.Param(utils.IdKey)
-	w := models.Cloth{Name: idParam}
-	res := models.DeleteCloth(user, w)
+	//w := models.Cloth{Name: idParam}
+	res := models.DeleteCloth(user, idParam)
 	if res == true {
 		c.JSON(http.StatusOK, ApiMessage{utils.SuccessMessage})
 	} else {

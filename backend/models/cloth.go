@@ -34,8 +34,10 @@ func CreateClothes(c []interface{}) interface{} {
 }
 */
 
-func DeleteCloth(un string, c Cloth) bool {
+func DeleteCloth(un string, cl string) bool {
 	u := GetUserByUserName(un)
+	c := GetClothByName(un, cl)
+	fmt.Println(c)
 	updateResult, err := USERS.UpdateOne(context.TODO(), bson.D{{"_id", u.Id}}, bson.D{{"$pull", bson.D{{"clothes", c}}}})
 	utils.CheckErr(err)
 	fmt.Println("update result: ", updateResult)
@@ -85,4 +87,16 @@ func PrintClothes(c []Cloth) {
 	for i := range c {
 		print(c[i].Name, "\n")
 	}
+}
+
+func GetClothByName(un string, s string) Cloth {
+	u := GetUserByUserName(un)
+	cs := u.Clothes
+	var res Cloth
+	for _, i := range cs {
+		if i.Name == s {
+			res = i
+		}
+	}
+	return res
 }
