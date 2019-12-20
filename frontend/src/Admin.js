@@ -11,7 +11,8 @@ class Admin extends Component {
         super(props);
 
         this.state = {
-            users: []
+            users: [],
+            filename: ''
         }
     }
 
@@ -32,6 +33,19 @@ class Admin extends Component {
             })
     }
 
+    getFileName = () => {
+        axios
+            .get(endpoint + "/api/admin")
+            .then(res => {
+                console.log(res.data);
+                this.setState({
+                    filename: res.data.map(s => {
+                        return s;
+                    })
+                })
+            })
+    }
+
     sendFile = () => {
         let formData = new FormData();
         formData.append("myFile", document.getElementById("file").files[0]);
@@ -43,6 +57,16 @@ class Admin extends Component {
             })
     }
 
+    downloadFile = () => {
+        let filename = this.getFileName();
+        let link = endpoint + '/api/tmp/';
+        const dummy = document.createElement("a");
+        dummy.href = link + filename;
+        dummy.download = filename;
+
+        document.body.appendChild(dummy);
+        dummy.click();
+    };
   render() {
       let rows = [];
       let email = '';
@@ -85,7 +109,7 @@ class Admin extends Component {
             <div className="wrap-btn Admin">
                 <button><Link to='/home/places'>Статистика</Link></button>
                 <button><Link to='/home/categories'>Add user</Link></button>
-                <button>Экспорт</button>
+               <button onClick={this.downloadFile}>Скачать файл</button>
                 <input type="file" id="file"></input>
                 <button onClick={this.sendFile}>Импорт</button>
             </div>

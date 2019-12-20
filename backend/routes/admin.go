@@ -31,5 +31,6 @@ func UnloadFile(c *gin.Context) {
 	file, _ := json.MarshalIndent(data, "", " ")
 	filename := "mydb_" + time.Now().Format("20060102150405") + ".json"
 	_ = ioutil.WriteFile("api/tmp/"+filename, file, 0644)
+	print(filename)
 	c.JSON(http.StatusOK, filename)
 }
