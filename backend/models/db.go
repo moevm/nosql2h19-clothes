@@ -100,6 +100,8 @@ func LoadNewUsers(path string) {
 			result, insertErr := USERS.InsertOne(ctx, user)
 			utils.CheckErr(insertErr)
 			print("InsertOne() API result:", result)
+		} else {
+
 		}
 		flag = false
 	}
