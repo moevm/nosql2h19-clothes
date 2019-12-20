@@ -1,0 +1,10 @@
+.Clothes>button{
+    width: 150px;
+}
+.Clothes table {
+    max-width: 800px;
+}
+
+div.Clothes {
+    max-width: 800px;
+}

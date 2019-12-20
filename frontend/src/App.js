@@ -16,6 +16,8 @@ import EditUser from './EditUser';
 import EditPlace from './EditPlace';
 import ShowCat from './ShowCat';
 import AddObj from './AddObj';
+import Clothes from "./Clothes";
+import AddClothe from "./AddClothe";
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
           <Route path="/admin" exact component={Admin} />
           <Route path="/admin/add" exact component={AddUser} />
           <Route path="/admin/edit" exact component={EditUser} />
+          <Route path="/home/clothes" exact component={Clothes} />
+          <Route path="/home/clothes/add" exact component={AddClothe} />
         </Switch>
       </div>
     </Router>

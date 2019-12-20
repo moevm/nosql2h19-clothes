@@ -27,7 +27,7 @@ class AddPlace extends Component {
           name: this.state.value
         })
         .then((response) => {
-          alert(response.status);
+          alert(response.statusText);
         })
   }
   render() {
