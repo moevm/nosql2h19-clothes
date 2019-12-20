@@ -54,5 +54,6 @@ func GetGroupByDate(un string, s string) []Group {
 			res = append(res, i)
 		}
 	}
+	fmt.Println(res)
 	return res
 }
