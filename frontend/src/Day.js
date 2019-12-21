@@ -16,6 +16,17 @@ class Day extends Component {
         this.getGroups();
     }
 
+    deleteGroup = (id) => {
+        console.log(id)
+        axios
+
+            .delete(endpoint + `/api/home/groups/${id}`)
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+                document.location.reload(true);
+            })
+    };
     getGroups = () => {
         axios
             .get(endpoint + `/api/home/groups/${this.props.match.params.id}`)
@@ -51,7 +62,7 @@ class Day extends Component {
         <td>{end}</td>
         <td>{places}</td>
         <td>{clothes}</td>
-        <td><button className="green">insert</button><button className="red">del</button></td>
+        <td><button className="green">insert</button><button className="red" onClick={(e) => this.deleteGroup(item['startTime'])}>del</button></td>
         </tr>);
         start = '';
         end = '';

@@ -124,6 +124,7 @@ class Home extends React.Component {
                 <div className="wrap-btn">
                     <button><Link to='/home/places'>Мои места</Link></button>
                     <button><Link to='/home/categories'>Мои категории</Link></button>
+                    <button><Link to='/home/clothes'>Моя одежда</Link></button>
                     <button><Link to='/home/make'>Генерация графика</Link></button>
                 </div>
             </div>

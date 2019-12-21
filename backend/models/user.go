@@ -115,11 +115,6 @@ func UpdateUser(userAuth User) bool {
 	return true
 }
 
-func DeleteUser(user User) bool {
-
-	return true
-}
-
 func GetUsers() []User {
 	var result []User
 	cur, err := USERS.Find(context.TODO(), bson.D{{}})
@@ -183,4 +178,12 @@ func GetUsersEmails() []string {
 	}
 	cur.Close(context.TODO())
 	return emails
+}
+
+func DeleteUser(email string) bool {
+	//updateResult, err := USERS.UpdateOne(context.TODO(), bson.D{{"email", email}}, bson.D{{"$remove", bson.D{{"email", email}}}})
+	updateResult, err := USERS.DeleteOne(context.TODO(), bson.D{{"email", email}})
+	utils.CheckErr(err)
+	fmt.Println("update result: ", updateResult)
+	return true
 }

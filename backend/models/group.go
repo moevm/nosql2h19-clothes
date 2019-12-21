@@ -36,8 +36,9 @@ func PrintGroups(c []Group) {
 	}
 }
 
-func DeleteGroup(un string, c Group) bool {
+func DeleteGroup(un string, cl string) bool {
 	u := GetUserByUserName(un)
+	c := GetGroupByStartTime(un, cl)
 	updateResult, err := USERS.UpdateOne(context.TODO(), bson.D{{"_id", u.Id}}, bson.D{{"$pull", bson.D{{"groups", c}}}})
 	utils.CheckErr(err)
 	fmt.Println("update result: ", updateResult)
@@ -55,5 +56,17 @@ func GetGroupByDate(un string, s string) []Group {
 		}
 	}
 	fmt.Println(res)
+	return res
+}
+
+func GetGroupByStartTime(un string, s string) Group {
+	u := GetUserByUserName(un)
+	cs := u.Groups
+	var res Group
+	for _, i := range cs {
+		if i.StartTime == s {
+			res = i
+		}
+	}
 	return res
 }

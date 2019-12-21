@@ -43,13 +43,12 @@ func UpdateGroup(c *gin.Context) {
 }
 
 func DeleteGroup(c *gin.Context) {
-	/*user := "Ilya Bykov"
+	user := "Ilya Bykov"
 	idParam := c.Param(utils.IdKey)
-	w := models.Group{Name: idParam}
-	res := models.DeleteGroup(user, w)
+	res := models.DeleteGroup(user, idParam)
 	if res == true {
 		c.JSON(http.StatusOK, ApiMessage{utils.SuccessMessage})
 	} else {
 		c.JSON(http.StatusBadRequest, ApiMessage{utils.EntityNotDeletedMessage(groupTitle)})
-	}*/
+	}
 }

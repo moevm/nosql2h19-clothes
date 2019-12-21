@@ -31,7 +31,19 @@ class Admin extends Component {
                     })
                 })
             })
-    }
+    };
+
+    deleteUser = (id) => {
+        console.log(id)
+        axios
+
+            .delete(endpoint + `/api/admin/${id}`)
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+                document.location.reload(true);
+            })
+    };
 
     getFileName = () => {
         axios
@@ -60,7 +72,7 @@ class Admin extends Component {
         let filename = 'mydb.json'
         let link = endpoint + '/api/tmp/';
         const dummy = document.createElement("a");
-        dummy.href = link  + filename;
+        dummy.href = link + filename;
         dummy.download = filename;
 
         document.body.appendChild(dummy);
@@ -84,7 +96,7 @@ class Admin extends Component {
           <td>{email}</td>
           <td>{name}</td>
           <td>{age}</td>
-          <td><button className="green">insert</button><button className="red">del</button></td>
+          <td><button className="green">see</button><button className="red" onClick={(e) => this.deleteUser(item['Email'])}>del</button></td>
           </tr>);
           email = '';
           name = '';

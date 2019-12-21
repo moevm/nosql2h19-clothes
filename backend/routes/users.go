@@ -28,6 +28,16 @@ const (
 	fieldErrMsg = "Field validation for '%s' failed on the '%s' tag"
 )
 
+func DeleteUser(c *gin.Context) {
+	idParam := c.Param(utils.IdKey)
+	fmt.Println(idParam)
+	res := models.DeleteUser(idParam)
+	if res == true {
+		c.JSON(http.StatusOK, ApiMessage{utils.SuccessMessage})
+	} else {
+		c.JSON(http.StatusBadRequest, ApiMessage{utils.EntityNotDeletedMessage(placeTitle)})
+	}
+}
 func getValidateError(errorValidate error) ApiErrorsWithMessage {
 
 	if _, ok := errorValidate.(*validator.InvalidValidationError); ok {

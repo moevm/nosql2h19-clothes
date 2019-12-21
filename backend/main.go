@@ -103,6 +103,7 @@ func main() {
 		{
 			admin.GET("", routes.UnloadFile)
 			admin.GET("/users", routes.GetUsers)
+			admin.DELETE("/:id", routes.DeleteUser)
 			admin.POST("", routes.UploadFile)
 		}
 		user := api.Group("/home") //TODO change to id
